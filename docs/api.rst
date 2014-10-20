@@ -6,23 +6,23 @@ API
 Miscellaneous
 =============
 
-.. automodule:: ade25.cab
+.. automodule:: cab.cab
     :members:
 
 ----
 
-.. automodule:: ade25.cab.interfaces
+.. automodule:: cab.cab.interfaces
     :members:
 
 
 Tests
 =====
 
-.. automodule:: ade25.cab.testing
+.. automodule:: cab.cab.testing
     :members:
 
 ----
 
-.. automodule:: ade25.cab.tests.test_setup
+.. automodule:: cab.cab.tests.test_setup
     :members:
 

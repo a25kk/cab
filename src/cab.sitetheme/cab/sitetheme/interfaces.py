@@ -4,5 +4,5 @@
 from plone.theme.interfaces import IDefaultPloneLayer
 
 
-class IAde25SiteThemeLayer(IDefaultPloneLayer):
+class ICabSiteThemeLayer(IDefaultPloneLayer):
     """Marker interface that defines a Zope 3 browser layer."""

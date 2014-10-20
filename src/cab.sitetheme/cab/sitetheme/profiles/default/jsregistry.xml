@@ -3,6 +3,6 @@
  <javascript authenticated="False" cacheable="True" compression="safe"
      conditionalcomment="" cookable="True" enabled="True"
      expression="request/HTTP_X_THEME_ENABLED | nothing"
-     id="++theme++ade25.sitetheme/dist/js/main.js"
+     id="++theme++cab.sitetheme/dist/js/main.js"
      inline="False"/>
 </object>

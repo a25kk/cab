@@ -1,11 +1,11 @@
-# ade25.cab
+# cab.cab
 
-## Buildout based Website
+## Plone Website
 
-* `Source code @ GitHub <https://github.com/kreativkombinat/ade25.cab>`_
-* `Releases @ PyPI <http://pypi.python.org/pypi/ade25.cab>`_
-* `Documentation @ ReadTheDocs <http://ade25cab.readthedocs.org>`_
-* `Continuous Integration @ Travis-CI <http://travis-ci.org/kreativkombinat/ade25.cab>`_
+* `Source code @ GitHub <https://github.com/kreativkombinat/cab.cab>`_
+* `Releases @ PyPI <http://pypi.python.org/pypi/cab.cab>`_
+* `Documentation @ ReadTheDocs <http://cabcab.readthedocs.org>`_
+* `Continuous Integration @ Travis-CI <http://travis-ci.org/kreativkombinat/cab.cab>`_
 
 ## How it works
 
@@ -32,8 +32,8 @@ development environment would be:
 ``` bash
 $ virtualenv-2.7 cab
 $ cd ./cab
-$ git clone gitlgithub.com:username/ade25.cab.git ade25.cab
-$ cd ./ade25.cab
+$ git clone gitlgithub.com:username/cab.cab.git cab.cab
+$ cd ./cab.cab
 $ python bootstrap.py -c development.cfg
 $ bin/buildout -Nc development.cfg
 ```

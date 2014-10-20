@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Installer for the ade25.sitetheme package."""
+"""Installer for the cab.sitetheme package."""
 
 from setuptools import find_packages
 from setuptools import setup
@@ -16,9 +16,9 @@ long_description = \
     read('docs', 'LICENSE.txt')
 
 setup(
-    name='ade25.sitetheme',
+    name='cab.sitetheme',
     version='1.0.0',
-    description="Buildout based Website",
+    description="Plone Website",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
     classifiers=[
@@ -28,10 +28,10 @@ setup(
     keywords='cab plone',
     author='Serge Davidov',
     author_email='sd@ade25.de',
-    url='http://pypi.python.org/pypi/ade25.cab',
+    url='http://pypi.python.org/pypi/cab.cab',
     license='BSD',
     packages=find_packages('src', exclude=['ez_setup']),
-    namespace_packages=['ade25'],
+    namespace_packages=['cab'],
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,

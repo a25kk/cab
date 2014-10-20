@@ -34,7 +34,7 @@
  <stylesheet title="" authenticated="False" cacheable="True"
     compression="none" conditionalcomment="" cookable="False" enabled="on"
     expression="request/HTTP_X_THEME_ENABLED | nothing"
-    id="++theme++ade25.sitetheme/dist/css/ade25.min.css" media="" rel="stylesheet"
+    id="++theme++cab.sitetheme/dist/css/cab.min.css" media="" rel="stylesheet"
     rendering="link"
     applyPrefix="True"
     />

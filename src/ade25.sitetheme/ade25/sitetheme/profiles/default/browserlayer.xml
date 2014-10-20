@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<layers>
-  <layer
-    name="ade25.sitetheme"
-    interface="ade25.sitetheme.interfaces.IAde25SiteThemeLayer"
-  />
-</layers>

@@ -1,2 +1,2 @@
-graft src/ade25
+graft src/cab
 include *.cfg *.rst *.in

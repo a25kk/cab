@@ -3,7 +3,7 @@
 
 from zope.i18nmessageid import MessageFactory
 
-_ = MessageFactory('ade25.sitetheme')
+_ = MessageFactory('cab.sitetheme')
 
 
 def initialize(context):

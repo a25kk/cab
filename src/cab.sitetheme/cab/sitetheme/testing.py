@@ -15,21 +15,21 @@ from plone.testing import z2
 import unittest2 as unittest
 
 
-class Ade25SiteThemeLayer(PloneSandboxLayer):
+class CabSiteThemeLayer(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
         """Set up Zope."""
         # Load ZCML
-        import ade25.sitetheme
-        self.loadZCML(package=ade25.sitetheme)
-        z2.installProduct(app, 'ade25.sitetheme')
+        import cab.sitetheme
+        self.loadZCML(package=cab.sitetheme)
+        z2.installProduct(app, 'cab.sitetheme')
 
     def setUpPloneSite(self, portal):
         """Set up Plone."""
         # Install into Plone site using portal_setup
-        applyProfile(portal, 'ade25.sitetheme:default')
+        applyProfile(portal, 'cab.sitetheme:default')
 
         # Login and create some test content
         setRoles(portal, TEST_USER_ID, ['Manager'])
@@ -43,14 +43,14 @@ class Ade25SiteThemeLayer(PloneSandboxLayer):
 
     def tearDownZope(self, app):
         """Tear down Zope."""
-        z2.uninstallProduct(app, 'ade25.sitetheme')
+        z2.uninstallProduct(app, 'cab.sitetheme')
 
 
-FIXTURE = Ade25CabLayer()
+FIXTURE = CabCabLayer()
 INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,), name="Ade25CabLayer:Integration")
+    bases=(FIXTURE,), name="CabCabLayer:Integration")
 FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,), name="Ade25CabLayer:Functional")
+    bases=(FIXTURE,), name="CabCabLayer:Functional")
 
 
 class IntegrationTestCase(unittest.TestCase):

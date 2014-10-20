@@ -1,11 +1,11 @@
-# ade25.sitetheme
+# cab.sitetheme
 
-## Buildout based Website
+## Plone Website
 
-* `Source code @ GitHub <https://github.com/kreativkombinat/ade25.cab>`_
-* `Releases @ PyPI <http://pypi.python.org/pypi/ade25.cab>`_
-* `Documentation @ ReadTheDocs <http://ade25cab.readthedocs.org>`_
-* `Continuous Integration @ Travis-CI <http://travis-ci.org/kreativkombinat/ade25.cab>`_
+* `Source code @ GitHub <https://github.com/kreativkombinat/cab.cab>`_
+* `Releases @ PyPI <http://pypi.python.org/pypi/cab.cab>`_
+* `Documentation @ ReadTheDocs <http://cabcab.readthedocs.org>`_
+* `Continuous Integration @ Travis-CI <http://travis-ci.org/kreativkombinat/cab.cab>`_
 
 ## How it works
 
@@ -16,7 +16,7 @@ development.
 In order to get productive you still need to generate a theme
 
 ```bash
-$ cd ade25.cab/src/ade25/cab/resources
+$ cd cab.cab/src/cab/cab/resources
 $ yo generator-diazotheme
 
 ```
@@ -24,9 +24,9 @@ $ yo generator-diazotheme
 
 ## Installation
 
-To install `ade25.cab` you simply add ``ade25.cab``
+To install `cab.cab` you simply add ``cab.cab``
 to the list of eggs in your buildout, run buildout and restart Plone.
-Then, install `ade25.cab` using the Add-ons control panel.
+Then, install `cab.cab` using the Add-ons control panel.
 
 
 ## Configuration
