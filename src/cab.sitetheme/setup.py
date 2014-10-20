@@ -30,9 +30,8 @@ setup(
     author_email='sd@ade25.de',
     url='http://pypi.python.org/pypi/cab.cab',
     license='BSD',
-    packages=find_packages('src', exclude=['ez_setup']),
+    packages=find_packages(exclude=['ez_setup']),
     namespace_packages=['cab'],
-    package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
     install_requires=[
