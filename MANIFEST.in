@@ -1,0 +1,2 @@
+graft src/ade25
+include *.cfg *.rst *.in
