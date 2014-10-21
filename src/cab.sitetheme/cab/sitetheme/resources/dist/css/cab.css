@@ -13386,7 +13386,7 @@ fieldset[disabled] .searchButton.active
 }
 .section-front-page .app-wrapper
 {
-    background: url('assets/img/bg01.jpg') no-repeat 50% 0 #fff;
+    background: url('../assets/img/bg01.jpg') no-repeat 50% 0 #fff;
     -webkit-background-size: cover;
             background-size: cover;
 }
