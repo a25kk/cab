@@ -31,10 +31,7 @@ module.exports = function (grunt) {
                     'bower_components/jquery/dist/jquery.js',
                     'bower_components/modernizr/modernizr.js',
                     'bower_components/bootstrap/dist/js/bootstrap.js',
-                    'bower_components/hideShowPassword/hideShowPassword.js',
                     'bower_components/blazy/blazy.js',
-                    'js/classie.js',
-                    'js/overlay.js',
                     'js/main.js'
                 ],
                 dest: '<%= appconfig.dist %>/js/<%= pkg.name %>.js'
@@ -42,15 +39,11 @@ module.exports = function (grunt) {
             theme: {
                 src: [
                     'bower_components/bootstrap/dist/js/bootstrap.js',
-                    'bower_components/hideShowPassword/hideShowPassword.js',
                     'bower_components/blazy/blazy.js',
-                    'js/classie.js',
-                    'js/overlay.js',
                     'js/main.js'
                 ],
                 dest: '<%= appconfig.dist %>/js/main.js'
             }
-<<<<<<< HEAD
         },
         uglify: {
             options: { banner: '<%= banner %>' },
@@ -405,8 +398,7 @@ module.exports = function (grunt) {
     ]);
     grunt.registerTask('dev', [
         'dist-css',
-        'dist-js',
-        'dist-html'
+        'dist-js'
     ]);
     grunt.registerTask('dist', [
         'clean',
