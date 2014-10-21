@@ -13227,7 +13227,9 @@ fieldset[disabled] .searchButton.active
 }
 .app-page
 {
-    padding: 1.42857143rem 0;
+    padding: 1.42857143rem;
+
+    background: #fff;
 }
 .app-page-title
 {
