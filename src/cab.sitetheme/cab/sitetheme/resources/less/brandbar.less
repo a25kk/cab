@@ -5,7 +5,6 @@
 .app-brandbar {
     .make-sm-column(4);
     padding: 0 @padding-xs-vertical @line-height-computed;
-    border-top: (@line-height-computed / 2) solid @brand-primary;
     @media (min-width: @screen-sm-min) {
       padding-right: @line-height-computed;
       padding-left: @line-height-computed;
@@ -15,7 +14,7 @@
 // Brandbar inner wrapper
 .app-brandbar-content {
   .container();
-  padding-top: @line-height-computed;
+  padding-top: (@line-height-computed * 1.2);
 }
 
 // Gridrow
@@ -51,14 +50,14 @@
   .h6();
   //.hidden-xs();
   display: block;
-  margin: ceil((@line-height-computed * 1.5)) 0 0 ceil((@line-height-computed / 2));
+  margin: ceil((@line-height-computed * 1.5)) 0 0 0;
   color: @text-color;
-  font-weight: 700;
+  font-weight: 500;
   //text-transform: uppercase;
   // Change box model on larger screens
   @media (min-width: @screen-sm-min) {
     display: inline-block;
-    margin: ceil((@line-height-computed * 1.5)) 0 0 ceil((@line-height-computed / 2));
+    margin: ceil((@line-height-computed * 1.5)) 0 0 0;
   }
 }
 

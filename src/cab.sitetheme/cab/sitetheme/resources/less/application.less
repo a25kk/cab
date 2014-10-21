@@ -2,12 +2,19 @@
 // Application stylesheet
 // -----------------------------------------------
 
-.app-toolbar + .app-top {
-    margin-top: @navbar-height;
+.app-toolbar + .app-wrapper {
+    margin-top: @navbar-height * 2;
+}
+
+.section-front-page .app-wrapper {
+	background: url("../assets/img/bg01.jpg") no-repeat 50% 0 #fff;
+  	background-size: cover;
 }
 
 .app-top {
-	.container();
+	width: 100%;
+	background: rgba(0, 0, 0, 0.25);
+	border-bottom: 1px solid white;
 }
 
 .app-header {
