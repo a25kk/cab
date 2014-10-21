@@ -3,32 +3,90 @@
 // -----------------------------------------
 
 .app-brandbar {
-    padding: @line-height-computed;
+    .make-sm-column(4);
+    padding: 0 @padding-xs-vertical @line-height-computed;
+    border-top: (@line-height-computed / 2) solid @brand-primary;
+    @media (min-width: @screen-sm-min) {
+      padding-right: @line-height-computed;
+      padding-left: @line-height-computed;
+    }
 }
 
+// Brandbar inner wrapper
 .app-brandbar-content {
   .container();
+  padding-top: @line-height-computed;
 }
 
-// Make a gridrow
+// Gridrow
 .app-brand {
   .make-row();
 }
 
-// The actual brandname
+
 .app-brand-title {
-  .make-md-column(4);
-  .app-brandname {
-    .h3();
-    .app-brandname-logo {
-      .img-responsive();
+  .make-sm-column(8);
+}
+
+// App brandname anchor styles
+.app-brandname {
+  .transition(color .5s linear);
+  &:hover {
+    color: @app-primary;
+    text-decoration: none;
+  }
+}
+
+.app-brandname-image {
+  display: block;
+  .size(134px, 71px);
+  margin-top: @line-height-computed;
+  @media (min-width: @screen-sm-min) {
+    .pull-left();
+    margin: 0;
+  }
+}
+
+.app-brandname-subclaim {
+  .h6();
+  //.hidden-xs();
+  display: block;
+  margin: ceil((@line-height-computed * 1.5)) 0 0 ceil((@line-height-computed / 2));
+  color: @text-color;
+  font-weight: 700;
+  //text-transform: uppercase;
+  // Change box model on larger screens
+  @media (min-width: @screen-sm-min) {
+    display: inline-block;
+    margin: ceil((@line-height-computed * 1.5)) 0 0 ceil((@line-height-computed / 2));
+  }
+}
+
+.app-brandname-title {
+  .h3();
+  display: block;
+  font-weight: 700;
+  text-transform: uppercase;
+  @media (min-width: @screen-sm-min) {
+    margin-top: 10px;
+  }
+  .app-brandname-lead {
+    display: block;
+    @media (min-width: @screen-sm-min) {
+      display: inline;
     }
   }
 }
-// Sitewide claim
-.app-brand-claim {
-  .make-md-column(8);
-  .app-claim {
-    .h5();
+
+.app-brand-location {
+  .make-sm-column(4);
+}
+
+.app-brandbar-location-marker {
+  .h3();
+  font-weight: 300;
+  margin-top: (@line-height-computed * 2.5);
+  @media (min-width: @screen-sm-min) {
+    .text-right();
   }
 }

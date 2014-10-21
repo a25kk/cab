@@ -1,0 +1,85 @@
+//
+// Application navbar
+// ----------------------------------------
+
+@app-navbar-height:   floor(@navbar-height * 2);
+
+.app-navbar {
+    .make-sm-column(8);
+    margin-right: -(@navbar-padding-horizontal);
+    margin-left: -(@navbar-padding-horizontal);
+    .navbar-collapse {
+        padding: 0;
+    }
+    @media (min-width: @grid-float-breakpoint) {
+        height: @app-navbar-height;
+        border: none;
+        margin-bottom: 0;
+    }
+}
+
+.selected {
+        background: @app-primary !important;
+
+        a {
+            color: white !important;
+        }
+    }
+
+.app-navbar-nav {
+    > li > a {
+        color: white !important;
+        .transition(background .25s linear);
+        text-transform: uppercase;
+        font-size: (@font-size-base / 1.3);
+        &:hover,
+        &:focus {
+          color: white !important;
+          background-color: @navbar-default-link-hover-bg;
+        }
+    }
+    > .active > a {
+        &,
+        &:hover,
+        &:focus {
+          color: white !important;
+          background-color: @navbar-default-link-active-bg;
+        }
+    }
+    > .disabled > a {
+        &,
+        &:hover,
+        &:focus {
+          color: white !important;
+          background-color: @navbar-default-link-disabled-bg;
+        }
+    }
+    > .navitem-home > a {
+        &,
+        &:hover,
+        &:focus {
+          color: white !important;
+          background-color: @navbar-default-link-disabled-bg !important;
+        }
+    }
+    .dropdown-menu > li > a {
+        color: @app-primary;
+        font-size: @font-size-base;
+    }
+    .dropdown-title > a {
+        font-weight: 400;
+    }
+    @media (min-width: @grid-float-breakpoint) {
+        >li > a {
+          color: @app-primary;
+          padding-top: ((@app-navbar-height - @line-height-computed) / 2);
+          padding-bottom: ((@app-navbar-height - @line-height-computed) / 2);
+        }
+        .dropdown-menu > li > a {
+            font-size: @font-size-small;
+        }
+        .dropdown-title > a {
+            font-size: @font-size-base;
+        }
+    }
+  }

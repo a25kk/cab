@@ -196,12 +196,12 @@ module.exports = function (grunt) {
       //  src: ['assets/css/*'],
       //  dest: '<%= appconfig.dist %>/assets/css/'
       //},
-      //images: {
-      //  expand: true,
-      //  flatten: true,
-      //  src: ['assets/img/*'],
-      //  dest: '<%= appconfig.dev %>/assets/img/'
-      //},
+      images: {
+        expand: true,
+        flatten: true,
+        src: ['assets/img/*'],
+        dest: '<%= appconfig.dev %>/assets/img/'
+      },
       ico: {
         expand: true,
         flatten: true,
@@ -325,14 +325,13 @@ module.exports = function (grunt) {
         pattern: '../../<%= appconfig.dist %>/js/<%= pkg.name %>.min.js',
         replacement: 'dist/js/<%= pkg.name %>.min.js',
         recursive: true
-      }
-      // Deactivated - uncomment when needed
-      //cleanImgPath: {
-      //  path: '<%= appconfig.dist %>',
-      //  pattern: '../assets/img/',
-      //  replacement: 'assets/img/',
-      //  recursive: true
-      //},
+      },
+      cleanImgPath: {
+        path: '<%= appconfig.dist %>',
+        pattern: '../assets/img/',
+        replacement: 'assets/img/',
+        recursive: true
+      },
     },
 
     validation: {
