@@ -65,3 +65,24 @@
 @input-height-large:        ((@font-size-large * @line-height-large) + (@padding-large-vertical * 2));
 //** Small `.form-control` height
 @input-height-small:        ((@font-size-small * @line-height-small) + (@padding-small-vertical * 2));
+
+// Navbar settings
+
+// Basics of a navbar
+@navbar-height:                    50px;
+@navbar-margin-bottom:             @line-height-computed;
+@navbar-default-color:             #fff;
+@navbar-default-bg:                transparent;
+@navbar-default-border:            darken(@navbar-default-bg, 6.5%);
+@navbar-border-radius:             0;
+@navbar-padding-horizontal:        floor(@grid-gutter-width / 2);
+@navbar-padding-vertical:          ((@navbar-height - @line-height-computed) / 2);
+
+// Navbar links
+@navbar-default-link-color:                #fff;
+@navbar-default-link-hover-color:          #000;
+@navbar-default-link-hover-bg:             #fff;
+@navbar-default-link-active-color:         #000;
+@navbar-default-link-active-bg:            darken(#fff, 6.5%);
+@navbar-default-link-disabled-color:       #ccc;
+@navbar-default-link-disabled-bg:          transparent;

@@ -11,16 +11,22 @@
     <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
     {% include toolbar.html %}
     <!-- App master nav -->
-    {% include navbar.html %}
+    <div class="app-wrapper">
+    <div class="app-top">
+    <div class="container">
     {% include brandbar.html %}
+    {% include navbar.html %}
+    </div>
+    </div>
+    
 
     <div class="container">
         <div role="main">
           {{ content }}
         </div>
     </div>
-
     {% include footer.html %}
+    </div>
     {% include javascript.html %}
     <div class="app-js-slot">
         {% include webfonts.html %}

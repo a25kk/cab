@@ -50,6 +50,7 @@ module.exports = function (grunt) {
                 ],
                 dest: '<%= appconfig.dist %>/js/main.js'
             }
+<<<<<<< HEAD
         },
         uglify: {
             options: { banner: '<%= banner %>' },
@@ -404,7 +405,8 @@ module.exports = function (grunt) {
     ]);
     grunt.registerTask('dev', [
         'dist-css',
-        'dist-js'
+        'dist-js',
+        'dist-html'
     ]);
     grunt.registerTask('dist', [
         'clean',
