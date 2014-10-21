@@ -1,0 +1,43 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="kk.sitecontent">
+<body>
+
+<metal:main fill-slot="main">
+  <metal:content-core define-macro="main">
+
+    <div class="app-contentpage">
+      <div class="leadImage"
+             tal:condition="context/image">
+          <img tal:define="scale context/@@images"
+               tal:replace="structure python: scale.scale('image').tag(css_class='leadImage')" />
+        </div>
+        <div class="pp-contentpage-header">
+            <h1 class="app-contentpage-title">
+                <span tal:condition="context/headline"
+                    tal:replace="context/headline" />
+                <span tal:condition="not:context/headline"
+                    tal:replace="context/Title" />
+            </h1>
+        </div>
+        <div id="viewlet-above-content-title"></div>
+        <p class="app-contentpage-lead"
+            tal:condition="context/Description"
+            tal:content="context/Description" />
+
+        <div class="app-contentpage-body">
+            <div tal:condition="context/text"
+                tal:replace="structure context/text/output" />
+        </div>
+    </div>
+
+  </metal:content-core>
+</metal:main>
+
+</body>
+</html>
+
