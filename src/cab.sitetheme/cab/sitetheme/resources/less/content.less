@@ -4,7 +4,14 @@
 
 .app-page {
   padding: @line-height-computed;
+  margin-top: @line-height-computed;
   background: transparent;
+}
+
+.template-folder_contents .app-page,
+.template-edit .app-page,
+.template-sharing .app-page {
+  background: #fff;
 }
 
 .app-page-title {
@@ -13,4 +20,45 @@
 
 .app-page-abstract {
   .lead();
+}
+
+.app-contentpage {
+	border: 0px solid red;
+	
+	.clearfix();
+
+	.app-contentpage-image {
+		margin-bottom: @line-height-computed;
+		@media (min-width: @grid-float-breakpoint) {
+  				.make-sm-column(8);
+  				margin-bottom: 0;
+  			}
+		.leadImage {
+  		width: 100%;
+  			img {
+    			display: block;
+    			height: auto;
+    			max-width: 100%;
+  			}
+  		}
+	}
+
+  	.app-contentpage-content {
+  		.make-sm-column(4);
+  		background: #fff;
+  		padding: 0 !important;
+  	}
+
+  	.app-contentpage-title {
+  		font-size: (@font-size-base * 1.2);
+  		font-weight: 700;
+  		background: @app-gray;
+  		color: #fff;
+  		padding: @line-height-computed;
+  		margin-top: 0;
+  	}
+
+  	.app-contentpage-body {
+  		padding: @line-height-computed;
+  	}
 }

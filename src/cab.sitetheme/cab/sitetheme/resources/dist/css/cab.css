@@ -13156,7 +13156,7 @@ fieldset[disabled] .searchButton.active
 }
 .app-navbar-nav > li > a
 {
-    font-size: .76923077rem;
+    font-size: .83333333rem;
     font-weight: 700;
 
     -webkit-transition: background .25s linear;
@@ -13227,9 +13227,16 @@ fieldset[disabled] .searchButton.active
 }
 .app-page
 {
+    margin-top: 1.42857143rem;
     padding: 1.42857143rem;
 
     background: transparent;
+}
+.template-folder_contents .app-page,
+.template-edit .app-page,
+.template-sharing .app-page
+{
+    background: #fff;
 }
 .app-page-title
 {
@@ -13252,6 +13259,103 @@ fieldset[disabled] .searchButton.active
     {
         font-size: 1.5rem;
     }
+}
+.app-contentpage
+{
+    border: 0 solid red;
+}
+.app-contentpage:before,
+.app-contentpage:after
+{
+    display: table;
+
+    content: ' ';
+}
+.app-contentpage:after
+{
+    clear: both;
+}
+.app-contentpage:before,
+.app-contentpage:after
+{
+    display: table;
+
+    content: ' ';
+}
+.app-contentpage:after
+{
+    clear: both;
+}
+.app-contentpage .app-contentpage-image
+{
+    margin-bottom: 1.42857143rem;
+}
+@media (min-width: 768px)
+{
+    .app-contentpage .app-contentpage-image
+    {
+        position: relative;
+
+        min-height: 1px;
+        margin-bottom: 0;
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+@media (min-width: 768px) and (min-width: 768px)
+{
+    .app-contentpage .app-contentpage-image
+    {
+        float: left;
+
+        width: 66.66666667%;
+    }
+}
+.app-contentpage .app-contentpage-image .leadImage
+{
+    width: 100%;
+}
+.app-contentpage .app-contentpage-image .leadImage img
+{
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+}
+.app-contentpage .app-contentpage-content
+{
+    position: relative;
+
+    min-height: 1px;
+    padding: 0 !important;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    background: #fff;
+}
+@media (min-width: 768px)
+{
+    .app-contentpage .app-contentpage-content
+    {
+        float: left;
+
+        width: 33.33333333%;
+    }
+}
+.app-contentpage .app-contentpage-title
+{
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    margin-top: 0;
+    padding: 1.42857143rem;
+
+    color: #fff;
+    background: #666;
+}
+.app-contentpage .app-contentpage-body
+{
+    padding: 1.42857143rem;
 }
 .app-layout-simple
 {
@@ -13453,79 +13557,6 @@ fieldset[disabled] .searchButton.active
     .app-header .h1
     {
         font-size: 4.5rem;
-    }
-}
-.app-contentpage
-{
-    border: 0 solid red;
-    background: #fff;
-}
-.app-contentpage:before,
-.app-contentpage:after
-{
-    display: table;
-
-    content: ' ';
-}
-.app-contentpage:after
-{
-    clear: both;
-}
-.app-contentpage:before,
-.app-contentpage:after
-{
-    display: table;
-
-    content: ' ';
-}
-.app-contentpage:after
-{
-    clear: both;
-}
-.app-contentpage .app-contentpage-image
-{
-    position: relative;
-
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-@media (min-width: 768px)
-{
-    .app-contentpage .app-contentpage-image
-    {
-        float: left;
-
-        width: 66.66666667%;
-    }
-}
-.app-contentpage .app-contentpage-image .leadImage
-{
-    width: 100%;
-    margin-top: 1.42857143rem;
-}
-.app-contentpage .app-contentpage-image .leadImage img
-{
-    display: block;
-
-    max-width: 100%;
-    height: auto;
-}
-.app-contentpage .app-contentpage-content
-{
-    position: relative;
-
-    min-height: 1px;
-    padding-right: 15px;
-    padding-left: 15px;
-}
-@media (min-width: 768px)
-{
-    .app-contentpage .app-contentpage-content
-    {
-        float: left;
-
-        width: 33.33333333%;
     }
 }
 .app-footer
