@@ -12,25 +12,24 @@
     {% include toolbar.html %}
     <!-- App master nav -->
     <div class="app-wrapper">
-    <div class="app-top">
-    <div class="container">
-    {% include brandbar.html %}
-    {% include navbar.html %}
-    </div>
-    </div>
+        <div class="app-top">
+            <div class="container">
+                {% include brandbar.html %}
+                {% include navbar.html %}
+            </div>
+        </div>
     
 
-    <div class="container">
-        <div role="main">
-          {{ content }}
+        <div class="container">
+            <div role="main">
+                {{ content }}
+            </div>
         </div>
-    </div>
-    {% include footer.html %}
-    
-    {% include javascript.html %}
-    <div class="app-js-slot">
-        {% include webfonts.html %}
-    </div>
+                {% include footer.html %}
+                {% include javascript.html %}
+        <div class="app-js-slot">
+                {% include webfonts.html %}
+        </div>
     </div>
   </body>
 </html>

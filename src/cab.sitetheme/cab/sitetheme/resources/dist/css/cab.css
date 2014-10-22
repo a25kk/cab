@@ -12973,7 +12973,7 @@ fieldset[disabled] .searchButton.active
         float: left !important;
         float: left;
 
-        margin: 0;
+        margin: 0 .47619048rem 0 0;
     }
 }
 .app-brandname-subclaim
@@ -13327,6 +13327,7 @@ fieldset[disabled] .searchButton.active
     position: relative;
 
     min-height: 1px;
+    min-height: 440px;
     padding: 0 !important;
     padding-right: 15px;
     padding-left: 15px;
@@ -13506,8 +13507,8 @@ fieldset[disabled] .searchButton.active
 {
     width: 100%;
 
-    border-bottom: 1px solid white;
-    background: rgba(0, 0, 0, .25) !important;
+    border-bottom: 5px solid #fff;
+    background: rgba(0, 0, 0, .6) !important;
 }
 .app-header
 {
@@ -13561,7 +13562,8 @@ fieldset[disabled] .searchButton.active
 }
 .app-footer
 {
-    border-top: 1px solid white;
-    background: rgba(0, 0, 0, .25);
+    color: #fff;
+    border-top: 5px solid #fff;
+    background: rgba(0, 0, 0, .6);
 }
 /*# sourceMappingURL=cab.css.map */

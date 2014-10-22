@@ -11,14 +11,17 @@
   <metal:content-core define-macro="main">
 
     <div class="app-contentpage">
+
       <div class="app-contentpage-image">
         <div class="leadImage"
-            tal:condition="context/image">
-          <img tal:define="scale context/@@images"
-               tal:replace="structure python: scale.scale('image').tag(css_class='leadImage')" />
+             tal:condition="context/image">
+        <img tal:define="scale context/@@images"
+             tal:replace="structure python: scale.scale('image').tag(css_class='leadImage')" />
         </div>
       </div>
+
       <div class="app-contentpage-content">
+
         <div class="pp-contentpage-header">
           <h1 class="app-contentpage-title">
             <span tal:condition="context/headline"
@@ -27,16 +30,22 @@
                 tal:replace="context/Title" />
           </h1>
         </div>
-        <div id="viewlet-above-content-title"></div>
+
+        <div id="viewlet-above-content-title">
+        </div>
+
         <p class="app-contentpage-lead"
             tal:condition="context/Description"
             tal:content="context/Description" />
 
         <div class="app-contentpage-body">
             <div tal:condition="context/text"
-                tal:replace="structure context/text/output" />
+                tal:replace="structure context/text/output">
+            </div>
         </div>
+
       </div>
+    
     </div>
 
   </metal:content-core>
