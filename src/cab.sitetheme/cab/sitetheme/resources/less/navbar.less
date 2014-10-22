@@ -4,14 +4,14 @@
 
 @app-navbar-height:   floor(@navbar-height * 2);
 
-.app-navbar {
-    .make-sm-column(8);
+.app-navbar {   
     margin-right: -(@navbar-padding-horizontal);
     margin-left: -(@navbar-padding-horizontal);
     .navbar-collapse {
         padding: 0;
     }
     @media (min-width: @grid-float-breakpoint) {
+        .make-sm-column(8);
         height: @app-navbar-height;
         border: none;
         margin-bottom: 0;
