@@ -13011,7 +13011,7 @@ fieldset[disabled] .searchButton.active
     {
         display: inline-block;
 
-        margin: 3rem 0 0 0;
+        margin: 2.85714286rem 0 0 0;
     }
 }
 .app-brandname-title
@@ -13571,5 +13571,12 @@ fieldset[disabled] .searchButton.active
     color: #fff;
     border-top: 5px solid #fff;
     background: rgba(0, 0, 0, .6);
+}
+.app-footer .app-footer-content
+{
+    font-size: .76923077rem;
+
+    text-align: center;
+    text-transform: uppercase;
 }
 /*# sourceMappingURL=cab.css.map */
