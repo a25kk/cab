@@ -13229,7 +13229,7 @@ fieldset[disabled] .searchButton.active
 {
     padding: 1.42857143rem;
 
-    background: #fff;
+    background: transparent;
 }
 .app-page-title
 {
@@ -13392,12 +13392,18 @@ fieldset[disabled] .searchButton.active
     -webkit-background-size: cover;
             background-size: cover;
 }
+.section-leistungen .app-wrapper
+{
+    background: url('../assets/img/bg01.jpg') no-repeat 50% 0 #fff;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
 .app-top
 {
     width: 100%;
 
     border-bottom: 1px solid white;
-    background: rgba(0, 0, 0, .25);
+    background: rgba(0, 0, 0, .25) !important;
 }
 .app-header
 {
@@ -13448,5 +13454,83 @@ fieldset[disabled] .searchButton.active
     {
         font-size: 4.5rem;
     }
+}
+.app-contentpage
+{
+    border: 0 solid red;
+    background: #fff;
+}
+.app-contentpage:before,
+.app-contentpage:after
+{
+    display: table;
+
+    content: ' ';
+}
+.app-contentpage:after
+{
+    clear: both;
+}
+.app-contentpage:before,
+.app-contentpage:after
+{
+    display: table;
+
+    content: ' ';
+}
+.app-contentpage:after
+{
+    clear: both;
+}
+.app-contentpage .app-contentpage-image
+{
+    position: relative;
+
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+@media (min-width: 768px)
+{
+    .app-contentpage .app-contentpage-image
+    {
+        float: left;
+
+        width: 66.66666667%;
+    }
+}
+.app-contentpage .app-contentpage-image .leadImage
+{
+    width: 100%;
+    margin-top: 1.42857143rem;
+}
+.app-contentpage .app-contentpage-image .leadImage img
+{
+    display: block;
+
+    max-width: 100%;
+    height: auto;
+}
+.app-contentpage .app-contentpage-content
+{
+    position: relative;
+
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+@media (min-width: 768px)
+{
+    .app-contentpage .app-contentpage-content
+    {
+        float: left;
+
+        width: 33.33333333%;
+    }
+}
+.app-footer
+{
+    border-top: 1px solid white;
+    background: rgba(0, 0, 0, .25);
 }
 /*# sourceMappingURL=cab.css.map */

@@ -11,12 +11,45 @@
   	background-size: cover;
 }
 
+.section-leistungen .app-wrapper {
+	background: url("../assets/img/bg01.jpg") no-repeat 50% 0 #fff;
+  	background-size: cover;
+}
+
 .app-top {
 	width: 100%;
-	background: rgba(0, 0, 0, 0.25);
+	background: rgba(0, 0, 0, 0.25) !important;
 	border-bottom: 1px solid white;
 }
 
 .app-header {
     .jumbotron();
+}
+
+.app-contentpage {
+	border: 0px solid red;
+	background: #fff;
+	.clearfix();
+
+	.app-contentpage-image {
+		.make-sm-column(8);
+		.leadImage {
+  		width: 100%;
+  		margin-top: @line-height-computed;
+  			img {
+    			display: block;
+    			height: auto;
+    			max-width: 100%;
+  			}
+  		}
+	}
+
+  	.app-contentpage-content {
+  		.make-sm-column(4);
+  	}
+}
+
+.app-footer {
+	background: rgba(0, 0, 0, 0.25);
+	border-top: 1px solid white;
 }
