@@ -32,8 +32,26 @@
 }
 
 .template-view .app-main {
-	.container();
 	background: transparent;
+}
+
+.portaltype-easyform .app-main {
+	background: #fff;
+	margin-top: @line-height-computed;
+	margin-bottom: @line-height-computed;
+	padding: 0;
+
+	.form {
+		padding: @line-height-computed;
+	}
+
+	.formControls {
+		margin: @line-height-computed 0;
+	}
+
+	.field input {
+		width: 100%;
+	}
 }
 
 .app-content {

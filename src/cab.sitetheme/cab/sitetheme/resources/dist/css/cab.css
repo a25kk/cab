@@ -8007,8 +8007,6 @@ ul.formTabs:after,
 .app-footer-content:after,
 .app-main:before,
 .app-main:after,
-.template-view .app-main:before,
-.template-view .app-main:after,
 .app-content:before,
 .app-content:after
 {
@@ -8037,7 +8035,6 @@ ul.formTabs:after,
 .app-brand:after,
 .app-footer-content:after,
 .app-main:after,
-.template-view .app-main:after,
 .app-content:after
 {
     clear: both;
@@ -13268,6 +13265,17 @@ fieldset[disabled] .searchButton.active
         font-size: 1.5rem;
     }
 }
+.documentFirstHeading
+{
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    margin: 0;
+    padding: .71428571rem 1.42857143rem;
+
+    color: #fff;
+    background: #666;
+}
 .app-contentpage-image
 {
     margin: 1.42857143rem 0;
@@ -13824,48 +13832,27 @@ dl.portlet ul.navTree .navTreeCurrentItem
 }
 .template-view .app-main
 {
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: 15px;
-    padding-left: 15px;
-
     background: transparent;
 }
-@media (min-width: 768px)
+.portaltype-easyform .app-main
 {
-    .template-view .app-main
-    {
-        width: 750px;
-    }
+    margin-top: 1.42857143rem;
+    margin-bottom: 1.42857143rem;
+    padding: 0;
+
+    background: #fff;
 }
-@media (min-width: 992px)
+.portaltype-easyform .app-main .form
 {
-    .template-view .app-main
-    {
-        width: 970px;
-    }
+    padding: 1.42857143rem;
 }
-@media (min-width: 1200px)
+.portaltype-easyform .app-main .formControls
 {
-    .template-view .app-main
-    {
-        width: 1170px;
-    }
+    margin: 1.42857143rem 0;
 }
-.template-view .app-main > .navbar-header,
-.template-view .app-main > .navbar-collapse
+.portaltype-easyform .app-main .field input
 {
-    margin-right: -15px;
-    margin-left: -15px;
-}
-@media (min-width: 992px)
-{
-    .template-view .app-main > .navbar-header,
-    .template-view .app-main > .navbar-collapse
-    {
-        margin-right: 0;
-        margin-left: 0;
-    }
+    width: 100%;
 }
 .app-content
 {
