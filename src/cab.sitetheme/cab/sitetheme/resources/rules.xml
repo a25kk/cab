@@ -129,6 +129,14 @@
                 css:theme-children="#app-main"
                 css:if-content="body.template-sharing" />
 
+        <replace css:content-children="#content"
+                css:theme-children="#app-main"
+                css:if-content="body.template-content_status_history" />
+
+        <replace css:content-children="#content"
+                css:theme-children="#app-main"
+                css:if-content="body.template-folder_rename_form" />
+
         <before css:content=".portalMessage" css:theme="#content" />
         <replace css:content-children="#viewlet-below-content"
             css:theme-children="#app-below-main-content" />
