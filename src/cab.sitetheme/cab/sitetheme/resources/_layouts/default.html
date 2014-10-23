@@ -20,11 +20,19 @@
         </div>
     
 
-        <div class="container">
-        <!--<div id="app-contentpage-portlets">
-        </div>-->
-            <div role="main">
-                {{ content }}
+        <div class="app-main">
+            <div class="app-content">
+                <div class="app-content-aside" id="app-content-aside">
+                    <!-- Fill me with lead image -->
+                </div>
+                <div class="app-content-main" id="app-content-main" role="main">
+                    <div class="app-content-portlets" id="app-content-portlets">
+                        
+                    </div>
+                    <div class="app-content-page">
+                        {{ content }}
+                    </div>
+                </div>
             </div>
         </div>
                 {% include footer.html %}

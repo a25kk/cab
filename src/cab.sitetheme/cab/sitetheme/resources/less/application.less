@@ -26,6 +26,27 @@
     .jumbotron();
 }
 
+.app-main {
+	.container();
+}
+
+.app-content {
+	.row();
+}
+
+.app-content-aside {
+	.make-sm-column(8);
+	margin-bottom: @line-height-computed;
+		@media (min-width: @grid-float-breakpoint) {
+  				.make-sm-column(8);
+  				margin-bottom: 0;
+  				}
+}
+
+.app-content-main {
+	.make-sm-column(4);
+}
+
 .app-footer {
 	background: rgba(0, 0, 0, 0.60);
 	#gradient > .vertical(@start-color: rgba(0, 0, 0, 0.60); @end-color: #000);

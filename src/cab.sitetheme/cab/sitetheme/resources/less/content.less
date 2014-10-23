@@ -3,7 +3,7 @@
 // -------------------------------------------
 
 .app-page {
-  padding: @line-height-computed;
+  //padding: @line-height-computed;
   margin-top: @line-height-computed;
   background: transparent;
 }
@@ -22,35 +22,16 @@
   .lead();
 }
 
-.app-contentpage {
-	border: 0px solid red;
-	
-	.clearfix();
 
-	.app-contentpage-image {
-		margin-bottom: @line-height-computed;
-		@media (min-width: @grid-float-breakpoint) {
-  				.make-sm-column(8);
-  				margin-bottom: 0;
-  			}
-		.leadImage {
-  		width: 100%;
-  			img {
-    			display: block;
-    			height: auto;
-    			max-width: 100%;
-  			}
-  		}
-	}
 
-  	.app-contentpage-content {
-  		background: #fff;
-  		padding: 0 !important;
-  		min-height: 440px;
-  		@media (min-width: @grid-float-breakpoint) {
-  			.make-sm-column(4);
-  		}
-  	}
+.app-contentpage-image {
+    margin: @line-height-computed 0;
+    border: 1px solid @app-gray;
+
+  .leadImage {
+    .img-responsive();
+    }
+  }
 
   	.app-contentpage-title {
   		font-size: (@font-size-base * 1.2);
@@ -58,10 +39,12 @@
   		background: @app-gray;
   		color: #fff;
   		padding: @line-height-computed;
-  		margin-top: 0;
+  		margin: 0;
   	}
 
   	.app-contentpage-body {
   		padding: @line-height-computed;
+      background: #fff;
+      margin-bottom: @line-height-computed;
+      min-height: 410px;
   	}
-}

@@ -100,8 +100,12 @@
                 css:if-content="body.template-pwreset_finish" />
 
 
-        <!-- Document Content -->
-        <replace css:content-children="#content"
+        <!-- Lead Image -->
+        <replace css:content="#app-contentpage-image"
+            css:theme-children="#app-content-aside" />
+
+         <!-- Document Content -->
+        <replace css:content-children="#content-core"
             css:theme-children="#content" />
 
         <before css:content=".portalMessage" css:theme="#content" />
@@ -116,9 +120,9 @@
 
         <!-- Columns -->
         <replace css:content-children="#portal-column-one > *"
-            css:theme-children="#app-contentpage-portlets" />
+            css:theme-children="#app-content-portlets" />
         <replace css:content-children="#portal-column-two > *"
-            css:theme-children="#app-contentpage-portlets" />
+            css:theme-children="#app-content-portlets" />
     </rules>
 
 </rules>
