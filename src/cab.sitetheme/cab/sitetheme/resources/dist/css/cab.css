@@ -8007,6 +8007,8 @@ ul.formTabs:after,
 .app-footer-content:after,
 .app-main:before,
 .app-main:after,
+.template-view .app-main:before,
+.template-view .app-main:after,
 .app-content:before,
 .app-content:after
 {
@@ -8035,6 +8037,7 @@ ul.formTabs:after,
 .app-brand:after,
 .app-footer-content:after,
 .app-main:after,
+.template-view .app-main:after,
 .app-content:after
 {
     clear: both;
@@ -13780,6 +13783,8 @@ dl.portlet ul.navTree .navTreeCurrentItem
     margin-left: auto;
     padding-right: 15px;
     padding-left: 15px;
+
+    background: #fff;
 }
 @media (min-width: 768px)
 {
@@ -13812,6 +13817,51 @@ dl.portlet ul.navTree .navTreeCurrentItem
 {
     .app-main > .navbar-header,
     .app-main > .navbar-collapse
+    {
+        margin-right: 0;
+        margin-left: 0;
+    }
+}
+.template-view .app-main
+{
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 15px;
+    padding-left: 15px;
+
+    background: transparent;
+}
+@media (min-width: 768px)
+{
+    .template-view .app-main
+    {
+        width: 750px;
+    }
+}
+@media (min-width: 992px)
+{
+    .template-view .app-main
+    {
+        width: 970px;
+    }
+}
+@media (min-width: 1200px)
+{
+    .template-view .app-main
+    {
+        width: 1170px;
+    }
+}
+.template-view .app-main > .navbar-header,
+.template-view .app-main > .navbar-collapse
+{
+    margin-right: -15px;
+    margin-left: -15px;
+}
+@media (min-width: 992px)
+{
+    .template-view .app-main > .navbar-header,
+    .template-view .app-main > .navbar-collapse
     {
         margin-right: 0;
         margin-left: 0;
