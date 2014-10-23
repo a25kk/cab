@@ -99,6 +99,9 @@
                 css:theme-children="#app-signin-content"
                 css:if-content="body.template-pwreset_finish" />
 
+
+
+        <!-- Rules for Custom Content -->
         <rules css:if-content="body.portaltype-kk-sitecontent-contentpage">
             <!-- Lead Image -->
             <replace css:content="#app-contentpage-image"
@@ -109,9 +112,22 @@
                 css:theme-children="#content" />
         </rules>
 
+        <!-- Rules for other Content -->
         <replace css:content-children="#content"
                 css:theme-children="#app-main"
                 css:if-not-content="body.portaltype-kk-sitecontent-contentpage" />
+
+        <replace css:content-children="#content"
+                css:theme-children="#app-main"
+                css:if-content="body.template-folder_contents" />
+
+        <replace css:content-children="#content"
+                css:theme-children="#app-main"
+                css:if-content="body.template-edit" />
+
+        <replace css:content-children="#content"
+                css:theme-children="#app-main"
+                css:if-content="body.template-sharing" />
 
         <before css:content=".portalMessage" css:theme="#content" />
         <replace css:content-children="#viewlet-below-content"
