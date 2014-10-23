@@ -13364,6 +13364,287 @@ fieldset[disabled] .searchButton.active
 {
     padding: 1.42857143rem;
 }
+/* Portlets specific styles */
+.portlet
+{
+    margin: 0 !important;
+
+    background: transparent;
+}
+.portletHeader,
+.managedPortlet .portletHeader
+{
+    font-size: 1.375rem !important;
+    font-weight: 600 !important;
+
+    margin: 10px 0 0 0;
+    padding: 0 0 5px 0 !important;
+
+    text-transform: uppercase;
+
+    background: transparent !important;
+}
+.portletHeader a,
+.managedPortlet .portletHeader a
+{
+    color: #666 !important;
+    outline: none;
+}
+.portletItem
+{
+    margin: 0 0 0 0;
+    padding: 0;
+}
+.portletItem h2,
+.portletItem h3
+{
+    font-size: 1.04166667rem;
+    font-weight: 600;
+
+    margin-top: 0;
+}
+.portletItem ol
+{
+    margin: 0 0 0 1em;
+}
+.portletItemDetails
+{
+    font-size: 100%;
+
+    display: block;
+
+    text-align: left;
+
+    color: black;
+    color: #999;
+}
+span.portletItemDetails
+{
+    display: block;
+}
+.portletFooter
+{
+    margin: 0 !important;
+    padding: 1.42857143rem 0;
+
+    text-align: left;
+
+    border: 0;
+    background: transparent !important;
+}
+.portlet a
+{
+    font-weight: normal;
+
+    text-decoration: none;
+}
+.portlet a.tile
+{
+    font-size: 100%;
+
+    display: block;
+}
+.portletItem ul
+{
+    padding: 0;
+
+    list-style-type: none;
+}
+.lastItem
+{
+    padding: 0 0 20px 0 !important;
+
+    border: 0 solid black;
+}
+.portletItem p
+{
+    font-size: .83333333rem;
+
+    margin: 0;
+}
+.portletItem a,
+.portletFooter a
+{
+    border-bottom: none;
+}
+.portletFooter a
+{
+    font-weight: normal !important;
+
+    padding: 0 20px 0 0;
+
+    border-bottom: none;
+    background: transparent !important;
+}
+.portletFilterNavigationPortlet
+{
+    border-bottom: 0 !important;
+}
+.portletFilterNavigationPortlet .portletHeader
+{
+    font-size: .8em;
+
+    border: 0 solid red !important;
+}
+.portletFilterNavigationPortlet .portletHeader a
+{
+    font-weight: bold !important;
+}
+.portletStaticText
+{
+    margin: 0 0 20px 0;
+    padding: 0 0 0 0;
+
+    vertical-align: top;
+
+    background: transparent;
+}
+.portletStaticText .image-inline
+{
+    margin-bottom: .71428571rem;
+}
+.portletStaticText td
+{
+    vertical-align: top;
+}
+.portletStaticText p
+{
+    line-height: 1.42857143rem;
+
+    margin-bottom: .71428571rem;
+    padding: 0 0 0 0;
+}
+.section-gruendach .portletStaticText p
+{
+    line-height: 1.42857143rem;
+
+    margin-bottom: .71428571rem;
+    padding: 0 1.42857143rem 0 1.42857143rem !important;
+}
+.portletStaticText ul
+{
+    margin: .5em 0 0 1.5em;
+
+    list-style-type: square;
+    list-style-image: none;
+}
+.portletStaticText ol
+{
+    margin: .5em 0 0 2em;
+}
+/* Portlets Navigation Styles */
+.portletNavigationTree
+{
+    line-height: 1em;
+
+    width: 100%;
+    margin-top: 1.42857143rem !important;
+
+    list-style: none !important;
+    list-style-image: none !important;
+}
+.portletNavigationTree .portletHeader
+{
+    display: none;
+}
+.portletNavigationTree .portletItem
+{
+    margin: 0 !important;
+}
+.portletNavigationTree .lastItem
+{
+    padding: 0 !important;
+}
+.navTree
+{
+    list-style: none;
+    list-style-image: none;
+}
+.navTree li
+{
+    display: inline-block;
+
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.navTreeItem
+{
+    font-weight: bold;
+
+    margin: 0;
+    padding: 0;
+}
+.navTreeItem a,
+dd.portletItem .navTreeItem a
+{
+    font-size: .83333333rem;
+    font-weight: normal;
+
+    display: block;
+
+    margin: 0 0 0 0;
+    padding: 5px 0 4px 10px !important;
+
+    text-align: left;
+    text-decoration: none;
+
+    border-bottom: 0 solid #33f !important;
+}
+.navTreeItem a
+{
+    line-height: 1.42857143rem;
+
+    color: #fff;
+    background: url(../assets/img/arrow.gif) no-repeat 0 12px;
+}
+.navTreeItem a:hover
+{
+    color: #33f !important;
+}
+dl.portlet ul.navTree .navTreeCurrentItem
+{
+    margin-right: 0;
+    margin-left: 0;
+}
+.navTreeCurrentItem
+{
+    color: #33f !important;
+}
+.navTreeItem .active
+{
+    color: black !important;
+}
+.navTreeItemInPath
+{
+    color: black !important;
+}
+.navTreeLevel0
+{
+    margin: 0 0 0 0 !important;
+
+    text-transform: none;
+
+    border: 0 solid red !important;
+}
+.navTreeLevel1
+{
+    margin-left: 0 !important;
+    padding-left: 1.42857143rem;
+
+    text-transform: none;
+}
+.navTreeItem .navTreeLevel1 li a:link
+{
+    color: white: !important;
+}
+.navTreeLevel2
+{
+    margin-left: 0 !important;
+}
+.navTreeLevel3
+{
+    margin-left: 0 !important;
+}
 .app-layout-simple
 {
     background: #333;
@@ -13568,6 +13849,8 @@ fieldset[disabled] .searchButton.active
 }
 .app-footer
 {
+    min-height: 8.57142857rem;
+
     color: #fff;
     border-top: 5px solid #fff;
     background: rgba(0, 0, 0, .6);

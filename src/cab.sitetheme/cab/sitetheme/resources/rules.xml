@@ -114,10 +114,11 @@
             </ul>
         </replace>
 
-        <!-- Columns example -->
+        <!-- Columns -->
+        <replace css:content-children="#portal-column-one > *"
+            css:theme-children="#app-contentpage-portlets" />
         <replace css:content-children="#portal-column-two > *"
-            css:theme-children="#app-sidebar" />
-
+            css:theme-children="#app-contentpage-portlets" />
     </rules>
 
 </rules>

@@ -21,6 +21,8 @@
       </div>
 
       <div class="app-contentpage-content">
+        <div id="app-contentpage-portlets">
+        </div>
 
         <div class="pp-contentpage-header">
           <h1 class="app-contentpage-title">
