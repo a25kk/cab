@@ -99,14 +99,19 @@
                 css:theme-children="#app-signin-content"
                 css:if-content="body.template-pwreset_finish" />
 
+        <rules css:if-content="body.portaltype-kk-sitecontent-contentpage">
+            <!-- Lead Image -->
+            <replace css:content="#app-contentpage-image"
+                css:theme-children="#app-content-aside" />
+    
+             <!-- Document Content -->
+            <replace css:content-children="#content-core"
+                css:theme-children="#content" />
+        </rules>
 
-        <!-- Lead Image -->
-        <replace css:content="#app-contentpage-image"
-            css:theme-children="#app-content-aside" />
-
-         <!-- Document Content -->
-        <replace css:content-children="#content-core"
-            css:theme-children="#content" />
+        <replace css:content-children="#content"
+                css:theme-children="#app-main"
+                css:if-not-content="body.portaltype-kk-sitecontent-contentpage" />
 
         <before css:content=".portalMessage" css:theme="#content" />
         <replace css:content-children="#viewlet-below-content"
