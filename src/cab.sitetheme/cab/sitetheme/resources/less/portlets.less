@@ -2,21 +2,23 @@
 
 .portlet {
     margin: 0 !important;
-    background: transparent;
+    background: #fff;
 }
 
 .portletHeader, .managedPortlet .portletHeader {
-    background: transparent !important;
-    padding: 0px 0px 5px 0px !important;
-    font-weight: 600 !important;
-    margin: 10px 0 0 0;
-    font-size: (@font-size-large * 1.1) !important;
-    text-transform: uppercase;
+    font-size: (@font-size-base * 1.2);
+    font-weight: 700;
+    background: @app-gray;
+    color: #fff;
+    padding: (@line-height-computed / 2) @line-height-computed;
+    margin: 0;
 }
 
 .portletHeader a, .managedPortlet .portletHeader a {
+    font-size: (@font-size-base * 1.2);
     outline: none;
-    color: #666666 !important;
+    color: #fff;
+    font-weight: 700;
 }
 
 .portletItem {
@@ -56,7 +58,6 @@ span.portletItemDetails {
 
 .portlet a {
     text-decoration: none;
-    font-weight: normal;
 }
 
 .portlet a.tile {
@@ -150,10 +151,6 @@ span.portletItemDetails {
     width: 100%;
 }
 
-.portletNavigationTree .portletHeader {
-    display: none;
-}
-
 .portletNavigationTree .portletItem {
     margin: 0px !important;
 }
@@ -171,7 +168,6 @@ span.portletItemDetails {
 .navTree li {
     margin: 0px !important;
     padding: 0px !important;
-    display: inline-block;
 }
 .navTreeItem {
     padding: 0px;
@@ -182,17 +178,17 @@ span.portletItemDetails {
 .navTreeItem a, dd.portletItem .navTreeItem a {
     display: block;
     text-decoration: none;
-    padding: 5px 0px 4px 10px !important;
+    padding: 5px 0px 4px @line-height-computed !important;
     margin: 0px 0px 0px 0px;
     font-weight: normal;
     font-size: (@font-size-base / 1.2);
     text-align: left;
-    border-bottom: 0px solid @app-danger !important;
+    border-bottom: 1px solid @app-gray!important;
 }
 
 .navTreeItem a {
     background: url(../assets/img/arrow.gif) no-repeat 0px 12px;
-    color: #fff;
+    color: @app-gray;
     line-height: @line-height-computed;
 }
 

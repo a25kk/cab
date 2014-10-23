@@ -13284,7 +13284,7 @@ fieldset[disabled] .searchButton.active
     font-weight: 700;
 
     margin: 0;
-    padding: 1.42857143rem;
+    padding: .71428571rem 1.42857143rem;
 
     color: #fff;
     background: #666;
@@ -13302,25 +13302,27 @@ fieldset[disabled] .searchButton.active
 {
     margin: 0 !important;
 
-    background: transparent;
+    background: #fff;
 }
 .portletHeader,
 .managedPortlet .portletHeader
 {
-    font-size: 1.375rem !important;
-    font-weight: 600 !important;
+    font-size: 1.2rem;
+    font-weight: 700;
 
-    margin: 10px 0 0 0;
-    padding: 0 0 5px 0 !important;
+    margin: 0;
+    padding: .71428571rem 1.42857143rem;
 
-    text-transform: uppercase;
-
-    background: transparent !important;
+    color: #fff;
+    background: #666;
 }
 .portletHeader a,
 .managedPortlet .portletHeader a
 {
-    color: #666 !important;
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    color: #fff;
     outline: none;
 }
 .portletItem
@@ -13367,8 +13369,6 @@ span.portletItemDetails
 }
 .portlet a
 {
-    font-weight: normal;
-
     text-decoration: none;
 }
 .portlet a.tile
@@ -13476,10 +13476,6 @@ span.portletItemDetails
     list-style: none !important;
     list-style-image: none !important;
 }
-.portletNavigationTree .portletHeader
-{
-    display: none;
-}
 .portletNavigationTree .portletItem
 {
     margin: 0 !important;
@@ -13495,8 +13491,6 @@ span.portletItemDetails
 }
 .navTree li
 {
-    display: inline-block;
-
     margin: 0 !important;
     padding: 0 !important;
 }
@@ -13516,18 +13510,18 @@ dd.portletItem .navTreeItem a
     display: block;
 
     margin: 0 0 0 0;
-    padding: 5px 0 4px 10px !important;
+    padding: 5px 0 4px 1.42857143rem !important;
 
     text-align: left;
     text-decoration: none;
 
-    border-bottom: 0 solid #33f !important;
+    border-bottom: 1px solid #666 !important;
 }
 .navTreeItem a
 {
     line-height: 1.42857143rem;
 
-    color: #fff;
+    color: #666;
     background: url(../assets/img/arrow.gif) no-repeat 0 12px;
 }
 .navTreeItem a:hover
