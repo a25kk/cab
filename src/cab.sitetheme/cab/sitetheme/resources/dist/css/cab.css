@@ -13276,6 +13276,10 @@ fieldset[disabled] .searchButton.active
     color: #fff;
     background: #666;
 }
+.documentByLine
+{
+    padding: 1.42857143rem;
+}
 .app-contentpage-image
 {
     margin: 1.42857143rem 0;
@@ -13830,11 +13834,16 @@ dl.portlet ul.navTree .navTreeCurrentItem
         margin-left: 0;
     }
 }
+.app-main #content-core
+{
+    padding: 1.42857143rem;
+}
 .template-view .app-main
 {
     background: transparent;
 }
-.portaltype-easyform .app-main
+.portaltype-easyform .app-main,
+.portaltype-document .app-main
 {
     margin-top: 1.42857143rem;
     margin-bottom: 1.42857143rem;
@@ -13842,15 +13851,13 @@ dl.portlet ul.navTree .navTreeCurrentItem
 
     background: #fff;
 }
-.portaltype-easyform .app-main .form
-{
-    padding: 1.42857143rem;
-}
-.portaltype-easyform .app-main .formControls
+.portaltype-easyform .app-main .formControls,
+.portaltype-document .app-main .formControls
 {
     margin: 1.42857143rem 0;
 }
-.portaltype-easyform .app-main .field input
+.portaltype-easyform .app-main .field input,
+.portaltype-document .app-main .field input
 {
     width: 100%;
 }

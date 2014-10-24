@@ -29,21 +29,26 @@
 .app-main {
 	.container();
 	background: #fff;
+
+	#content-core{
+		padding: @line-height-computed;
+	}
 }
 
 .template-view .app-main {
 	background: transparent;
 }
 
-.portaltype-easyform .app-main {
+.portaltype-easyform .app-main,
+.portaltype-document .app-main {
 	background: #fff;
 	margin-top: @line-height-computed;
 	margin-bottom: @line-height-computed;
 	padding: 0;
 
-	.form {
-		padding: @line-height-computed;
-	}
+	//.form {
+	//	padding: @line-height-computed;
+	//}
 
 	.formControls {
 		margin: @line-height-computed 0;
