@@ -13250,21 +13250,6 @@ fieldset[disabled] .searchButton.active
 
     border-bottom: 1px solid #eee;
 }
-.app-page-abstract
-{
-    font-size: 1rem;
-    font-weight: 300;
-    line-height: 1.4;
-
-    margin-bottom: 1.42857143rem;
-}
-@media (min-width: 768px)
-{
-    .app-page-abstract
-    {
-        font-size: 1.5rem;
-    }
-}
 .documentFirstHeading
 {
     font-size: 1.2rem;
