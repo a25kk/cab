@@ -2,9 +2,19 @@
 // Footer
 // -----------------------------------
 
+
 .app-footer {
-    padding: @line-height-computed;
-    border-top: 1px solid @gray-lighter;
+	padding: @line-height-computed;
+	background: @app-gray; 
+	border-top: 2px solid #fff;
+	color: #fff;
+	min-height: (@line-height-computed * 5);
+
+	.app-footer-content {
+		font-size: (@font-size-base / 1.3);
+		text-transform: uppercase;
+		text-align: left;
+	}
 }
 
 .app-footer-content {

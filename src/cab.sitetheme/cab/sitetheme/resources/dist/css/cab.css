@@ -13751,7 +13751,7 @@ fieldset[disabled] .searchButton.active
     {
         float: left;
 
-        width: 33.33333333%;
+        width: 41.66666667%;
     }
 }
 @media (min-width: 768px)
@@ -13999,6 +13999,8 @@ fieldset[disabled] .searchButton.active
 {
     margin-right: -15px;
     margin-left: -15px;
+
+    background: #666;
 }
 .app-navbar .navbar-collapse
 {
@@ -14025,7 +14027,7 @@ fieldset[disabled] .searchButton.active
     {
         float: left;
 
-        width: 66.66666667%;
+        width: 58.33333333%;
     }
 }
 .selected
@@ -14036,6 +14038,12 @@ fieldset[disabled] .searchButton.active
 {
     color: black !important;
 }
+.app-navbar-nav li
+{
+    width: 120px;
+
+    border: 0 solid red;
+}
 .app-navbar-nav > li > a
 {
     font-size: .83333333rem;
@@ -14044,6 +14052,7 @@ fieldset[disabled] .searchButton.active
     -webkit-transition: background .25s linear;
          -o-transition: background .25s linear;
             transition: background .25s linear;
+    text-align: center !important;
     text-transform: uppercase;
 
     color: white;
@@ -14530,9 +14539,19 @@ dl.portlet ul.navTree .navTreeCurrentItem
 }
 .app-footer
 {
+    min-height: 7.14285714rem;
     padding: 1.42857143rem;
 
-    border-top: 1px solid #eee;
+    color: #fff;
+    border-top: 2px solid #fff;
+    background: #666;
+}
+.app-footer .app-footer-content
+{
+    font-size: .76923077rem;
+
+    text-align: left;
+    text-transform: uppercase;
 }
 .app-footer-content
 {
@@ -14597,8 +14616,8 @@ dl.portlet ul.navTree .navTreeCurrentItem
 {
     width: 100%;
 
-    border-bottom: 5px solid #fff;
-    background: rgba(0, 0, 0, .6) !important;
+    border-bottom: 2px solid #fff;
+    background: #666;
 }
 .app-header
 {
@@ -14783,27 +14802,5 @@ dl.portlet ul.navTree .navTreeCurrentItem
 
         width: 33.33333333%;
     }
-}
-.app-footer
-{
-    min-height: 8.57142857rem;
-
-    color: #fff;
-    border-top: 5px solid #fff;
-    background: rgba(0, 0, 0, .6);
-    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, .6) 0%, #000 100%);
-    background-image:      -o-linear-gradient(top, rgba(0, 0, 0, .6) 0%, #000 100%);
-    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, .6)), to(#000));
-    background-image:         linear-gradient(to bottom, rgba(0, 0, 0, .6) 0%, #000 100%);
-    background-repeat: repeat-x;
-
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#99000000', endColorstr='#ff000000', GradientType=0);
-}
-.app-footer .app-footer-content
-{
-    font-size: .76923077rem;
-
-    text-align: center;
-    text-transform: uppercase;
 }
 /*# sourceMappingURL=cab.css.map */
