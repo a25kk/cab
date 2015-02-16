@@ -14183,6 +14183,8 @@ fieldset[disabled] .searchButton.active
 }
 .app-contentpage-body
 {
+    font-size: .83333333rem;
+
     min-height: 428px;
     margin-bottom: 1.42857143rem;
     padding: 1.42857143rem;
