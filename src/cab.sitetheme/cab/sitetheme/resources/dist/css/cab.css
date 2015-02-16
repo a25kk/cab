@@ -14619,6 +14619,24 @@ dl.portlet ul.navTree .navTreeCurrentItem
     -webkit-background-size: cover;
             background-size: cover;
 }
+.section-equipment .app-wrapper
+{
+    background: url('../assets/img/bg03.jpg') no-repeat 50% 0 #fff;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
+.section-ueber-uns .app-wrapper
+{
+    background: url('../assets/img/bg04.jpg') no-repeat 50% 0 #fff;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
+.section-referenzen .app-wrapper
+{
+    background: url('../assets/img/bg05.jpg') no-repeat 50% 0 #fff;
+    -webkit-background-size: cover;
+            background-size: cover;
+}
 .app-top
 {
     width: 100%;
