@@ -14181,6 +14181,17 @@ fieldset[disabled] .searchButton.active
     color: #fff;
     background: #666;
 }
+.template-folder_summary_view .app-contentpage-title
+{
+    font-size: 1.2rem;
+    font-weight: 700;
+
+    margin: 0 0 1.42857143rem 0;
+    padding: .95238095rem 1.42857143rem;
+
+    color: #fff;
+    background: #666;
+}
 .app-contentpage-body
 {
     font-size: .83333333rem;

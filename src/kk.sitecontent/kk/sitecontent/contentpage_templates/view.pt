@@ -15,7 +15,7 @@
            tal:replace="structure python: scale.scale('image').tag(css_class='leadImage')" />
     </div>
       <div class="app-contentpage-content" id="content-core">
-        <div class="pp-contentpage-header">
+        <div class="app-contentpage-header">
           <h1 class="app-contentpage-title">
             <span tal:condition="context/headline"
                 tal:replace="context/headline" />
