@@ -14443,7 +14443,7 @@ dl.portlet ul.navTree .navTreeCurrentItem
 {
     margin: 0 0 0 0 !important;
 
-    text-transform: none;
+    text-transform: uppercase;
 
     border: 0 solid red !important;
 }
@@ -14456,6 +14456,8 @@ dl.portlet ul.navTree .navTreeCurrentItem
 }
 .navTreeItem .navTreeLevel1 li a:link
 {
+    padding-left: 2.85714286rem !important;
+
     color: white: !important;
 }
 .navTreeLevel2

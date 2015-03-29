@@ -13,6 +13,11 @@
     <theme href="dist/signin/index.html" css:if-content="body.template-pwreset_form" />
     <theme href="dist/signin/index.html" css:if-content="body.template-pwreset_finish" />
 
+    <theme href="dist/equipment/index.html" css:if-content="body.subsection-licht" />
+    <theme href="dist/equipment/index.html" css:if-content="body.subsection-ton" />
+    <theme href="dist/equipment/index.html" css:if-content="body.subsection-video" />
+    <theme href="dist/equipment/index.html" css:if-content="body.subsection-buehne_rigging" />
+
     <!-- Rules applying to a standard Plone web page -->
     <rules css:if-content="#visual-portal-wrapper">
 
@@ -105,7 +110,7 @@
         <rules css:if-content="body.portaltype-kk-sitecontent-contentpage">
             <!-- Lead Image -->
             <replace css:content="#app-contentpage-image"
-                css:theme-children="#app-content-aside" />
+                css:theme-children="#app-contentpage-image" />
     
              <!-- Document Content -->
             <replace css:content-children="#content-core"

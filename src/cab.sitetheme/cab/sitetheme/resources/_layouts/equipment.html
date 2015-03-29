@@ -23,18 +23,22 @@
         <div class="app-main" id="app-main">
             <div class="app-content">
                 <div class="app-content-aside" id="app-content-aside">
-                    <div id="app-contentpage-image">
+                <div id="app-contentpage-image">
                     <!-- Fill me with lead image -->
                     </div>
+                <div class="app-equipment-page">
+                        {{ content }}
+                    </div>
+
                 </div>
                 <div class="app-content-main" id="app-content-main" role="main">
                     <div class="app-content-portlets" id="app-content-portlets">
                         
                     </div>
-                    <div class="app-content-page">
-                        {{ content }}
-                    </div>
+                    
                 </div>
+                
+                
             </div>
         </div>
                 {% include footer.html %}
