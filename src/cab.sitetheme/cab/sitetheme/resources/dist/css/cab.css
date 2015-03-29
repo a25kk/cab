@@ -14844,4 +14844,28 @@ dl.portlet ul.navTree .navTreeCurrentItem
         width: 33.33333333%;
     }
 }
+.tileItem
+{
+    display: inline-block;
+
+    width: 100%;
+
+    border-bottom: 1px solid #e3e4e5;
+}
+.tileHeadline
+{
+    font-size: 1.2rem;
+}
+.img-responsive-large
+{
+    display: block;
+    float: left !important;
+    float: left;
+
+    height: auto;
+    margin-right: 1.42857143rem;
+    margin-bottom: 1.42857143rem;
+
+    border: 0;
+}
 /*# sourceMappingURL=cab.css.map */
