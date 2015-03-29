@@ -17,6 +17,7 @@
     <theme href="dist/equipment/index.html" css:if-content="body.subsection-ton" />
     <theme href="dist/equipment/index.html" css:if-content="body.subsection-video" />
     <theme href="dist/equipment/index.html" css:if-content="body.subsection-buehne_rigging" />
+    <theme href="dist/equipment/index.html" css:if-content="body.subsection-team" />
 
     <!-- Rules applying to a standard Plone web page -->
     <rules css:if-content="#visual-portal-wrapper">
