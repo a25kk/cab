@@ -19,7 +19,7 @@
     <theme href="dist/equipment/index.html" css:if-content="body.subsection-buehne_rigging" />
     <theme href="dist/equipment/index.html" css:if-content="body.subsection-team" />
     <theme href="dist/equipment/index.html" css:if-content="body.section-leistungen" />
-    
+    <theme href="dist/equipment/index.html" css:if-content="body.template-kk-sitecontent-contentpage" />
 
     <!-- Rules applying to a standard Plone web page -->
     <rules css:if-content="#visual-portal-wrapper">
