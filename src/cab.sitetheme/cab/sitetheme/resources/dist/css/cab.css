@@ -14551,6 +14551,15 @@ fieldset[disabled] .searchButton.focus
 {
     padding: 1.42857143rem;
 }
+.app-contentpage-lead
+{
+    font-size: .9rem;
+
+    margin-bottom: 0;
+    padding: 1.42857143rem 1.42857143rem 0 1.42857143rem;
+
+    background: #fff;
+}
 .app-contentpage-image
 {
     margin: 1.42857143rem 0;
@@ -14821,7 +14830,6 @@ dd.portletItem .navTreeItem a
     line-height: 1.42857143rem;
 
     color: #666;
-    background: url(../assets/img/arrow.gif) no-repeat 0 12px;
 }
 .navTreeItem a:hover
 {

@@ -30,35 +30,21 @@ module.exports = function (grunt) {
                     stripBanners: true
                 },
                 src: [
-                    'bower_components/jquery/dist/jquery.js',
+                    //'bower_components/jquery/dist/jquery.js',
                     'bower_components/modernizr/modernizr.js',
-                    'bower_components/bootstrap/dist/js/bootstrap.js',
-                    'bower_components/mailcheck/src/mailcheck.js',
-                    'bower_components/JVFloat/jvfloat.js',
+                    'bower_components/bootstrap/dist/bootstrap.min.js',
                     'bower_components/hideShowPassword/hideShowPassword.js',
                     'bower_components/lazysizes/lazysizes.js',
-                    'bower_components/isotope/dist/isotope.pkgd.js',
-                    'bower_components/flickity/dist/flickity.pkgd.js',
-                    'bower_components/respimage/respimage.js',
                     'js/main.js'
                 ],
                 dest: '<%= config.dist %>/js/<%= pkg.name %>.js'
             },
             theme: {
-                options: {
-                    banner: "require(['jquery', 'pat-registry'], function($, Registry) {",
-                    footer: "});",
-                    stripBanners: true
-                },
                 src: [
-                    'bower_components/bootstrap-without-jquery/bootstrap3/bootstrap-without-jquery.js',
-                    //'bower_components/mailcheck/src/mailcheck.js',
-                    //'bower_components/JVFloat/jvfloat.js',
-                    //'bower_components/hideShowPassword/hideShowPassword.js',
+                    //'bower_components/jquery/dist/jquery.js',
+                    'bower_components/bootstrap/dist/bootstrap.min.js',
+                    'bower_components/hideShowPassword/hideShowPassword.js',
                     'bower_components/lazysizes/lazysizes.js',
-                    // 'bower_components/isotope/dist/isotope.pkgd.js',
-                    'bower_components/flickity/dist/flickity.pkgd.js',
-                    'bower_components/respimage/respimage.js',
                     'js/main.js'
                 ],
                 dest: '<%= config.dist %>/js/main.js'
