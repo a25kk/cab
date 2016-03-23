@@ -30,9 +30,10 @@ module.exports = function (grunt) {
                     stripBanners: true
                 },
                 src: [
-                    //'bower_components/jquery/dist/jquery.js',
+                    'bower_components/jquery/dist/jquery.js',
                     'bower_components/modernizr/modernizr.js',
-                    'bower_components/bootstrap/dist/bootstrap.min.js',
+                    'bower_components/bootstrap/js/collapse.js',
+                    'bower_components/bootstrap/js/dropdown.js',
                     'bower_components/hideShowPassword/hideShowPassword.js',
                     'bower_components/lazysizes/lazysizes.js',
                     'js/main.js'
@@ -41,9 +42,8 @@ module.exports = function (grunt) {
             },
             theme: {
                 src: [
-                    //'bower_components/jquery/dist/jquery.js',
-                    'bower_components/bootstrap/dist/bootstrap.min.js',
-                    'bower_components/hideShowPassword/hideShowPassword.js',
+                    'bower_components/bootstrap/js/collapse.js',
+                    'bower_components/bootstrap/js/dropdown.js',
                     'bower_components/lazysizes/lazysizes.js',
                     'js/main.js'
                 ],
@@ -506,7 +506,7 @@ module.exports = function (grunt) {
         },
         connect: {
             options: {
-                port: 9000,
+                port: 9499,
                 hostname: 'localhost',
                 livereload: 35729,
                 base: '<%= config.dev %>'
