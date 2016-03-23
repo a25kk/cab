@@ -7,7 +7,7 @@ from fabric.api import run
 from ade25.fabfiles import project
 
 from slacker import Slacker
-slack = Slacker('xoxp-2440800772-2440800774-2520374751-468e84')
+slack = Slacker('${settings:slack-api-token}')
 
 env.use_ssh_config = True
 env.forward_agent = True
@@ -18,11 +18,10 @@ env.hostname = '${fabric:host}'
 env.webserver = '${fabric:webserver}'
 env.code_root = '${fabric:directory}'
 env.local_root = '${buildout:directory}'
-env.sitename = 'hph'
+env.sitename = 'cab'
 env.code_user = 'root'
 env.prod_user = 'www'
-# Uncomment and add your name here
-env.actor = '${fabric:username}'
+env.actor = ${settings:username}
 
 
 @task
@@ -78,7 +77,7 @@ def rebuild(actor=None):
 @task
 def get_data():
     """ Copy live database for local development """
-    project.db.download_data()
+    project.db.download()
 
 
 @task
