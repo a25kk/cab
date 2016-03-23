@@ -1,456 +1,381 @@
-(function (factory) {
+/* ========================================================================
+ * Bootstrap: collapse.js v3.3.6
+ * http://getbootstrap.com/javascript/#collapse
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
 
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define(['jquery'], factory);
-  } else if (typeof exports === 'object') {
-    // Node/CommonJS
-    factory(require('jquery'));
-  } else {
-    // Browser globals
-    factory(jQuery);
+/* jshint latedef: false */
+
++function ($) {
+  'use strict';
+
+  // COLLAPSE PUBLIC CLASS DEFINITION
+  // ================================
+
+  var Collapse = function (element, options) {
+    this.$element      = $(element)
+    this.options       = $.extend({}, Collapse.DEFAULTS, options)
+    this.$trigger      = $('[data-toggle="collapse"][href="#' + element.id + '"],' +
+                           '[data-toggle="collapse"][data-target="#' + element.id + '"]')
+    this.transitioning = null
+
+    if (this.options.parent) {
+      this.$parent = this.getParent()
+    } else {
+      this.addAriaAndCollapsedClass(this.$element, this.$trigger)
+    }
+
+    if (this.options.toggle) this.toggle()
   }
 
-}(function ($, undef) {
+  Collapse.VERSION  = '3.3.6'
 
-  var dataKey = 'plugin_hideShowPassword',
-    shorthandArgs = ['show', 'innerToggle'],
-    SPACE = 32,
-    ENTER = 13;
+  Collapse.TRANSITION_DURATION = 350
 
-  var canSetInputAttribute = (function(){
-    var body = document.body,
-      input = document.createElement('input'),
-      result = true;
-    if (! body) {
-      body = document.createElement('body');
-    }
-    input = body.appendChild(input);
-    try {
-      input.setAttribute('type', 'text');
-    } catch (e) {
-      result = false;
-    }
-    body.removeChild(input);
-    return result;
-  }());
-
-  var defaults = {
-    // Visibility of the password text. Can be true, false, 'toggle'
-    // or 'infer'. If 'toggle', it will be the opposite of whatever
-    // it currently is. If 'infer', it will be based on the input
-    // type (false if 'password', otherwise true).
-    show: 'infer',
-
-    // Set to true to create an inner toggle for this input. Can
-    // also be sent to an event name to delay visibility of toggle
-    // until that event is triggered on the input element.
-    innerToggle: false,
-
-    // If false, the plugin will be disabled entirely. Set to
-    // the outcome of a test to insure input attributes can be
-    // set after input has been inserted into the DOM.
-    enable: canSetInputAttribute,
-
-    // Class to add to input element when the plugin is enabled.
-    className: 'hideShowPassword-field',
-
-    // Event to trigger when the plugin is initialized and enabled.
-    initEvent: 'hideShowPasswordInit',
-
-    // Event to trigger whenever the visibility changes.
-    changeEvent: 'passwordVisibilityChange',
-
-    // Properties to add to the input element.
-    props: {
-      autocapitalize: 'off',
-      autocomplete: 'off',
-      autocorrect: 'off',
-      spellcheck: 'false'
-    },
-
-    // Options specific to the inner toggle.
-    toggle: {
-      // The element to create.
-      element: '<button type="button">',
-      // Class name of element.
-      className: 'hideShowPassword-toggle',
-      // Whether or not to support touch-specific enhancements.
-      // Defaults to the value of Modernizr.touch if available,
-      // otherwise false.
-      touchSupport: (typeof Modernizr === 'undefined') ? false : Modernizr.touch,
-      // Non-touch event to bind to.
-      attachToEvent: 'click.hideShowPassword',
-      // Event to bind to when touchSupport is true.
-      attachToTouchEvent: 'touchstart.hideShowPassword mousedown.hideShowPassword',
-      // Key event to bind to if attachToKeyCodes is an array
-      // of at least one keycode.
-      attachToKeyEvent: 'keyup',
-      // Key codes to bind the toggle event to for accessibility.
-      // If false, this feature is disabled entirely.
-      // If true, the array of key codes will be determined based
-      // on the value of the element option.
-      attachToKeyCodes: true,
-      // Styles to add to the toggle element. Does not include
-      // positioning styles.
-      styles: { position: 'absolute' },
-      // Styles to add only when touchSupport is true.
-      touchStyles: { pointerEvents: 'none' },
-      // Where to position the inner toggle relative to the
-      // input element. Can be 'right', 'left' or 'infer'. If
-      // 'infer', it will be based on the text-direction of the
-      // input element.
-      position: 'infer',
-      // Where to position the inner toggle on the y-axis
-      // relative to the input element. Can be 'top', 'bottom'
-      // or 'middle'.
-      verticalAlign: 'middle',
-      // Amount by which to "offset" the toggle from the edge
-      // of the input element.
-      offset: 0,
-      // Attributes to add to the toggle element.
-      attr: {
-        role: 'button',
-        'aria-label': 'Show Password',
-        tabIndex: 0
-      }
-    },
-
-    // Options specific to the wrapper element, created
-    // when the innerToggle is initialized to help with
-    // positioning of that element.
-    wrapper: {
-      // The element to create.
-      element: '<div>',
-      // Class name of element.
-      className: 'hideShowPassword-wrapper',
-      // If true, the width of the wrapper will be set
-      // unless it is already the same width as the inner
-      // element. If false, the width will never be set. Any
-      // other value will be used as the width.
-      enforceWidth: true,
-      // Styles to add to the wrapper element. Does not
-      // include inherited styles or width if enforceWidth
-      // is not false.
-      styles: { position: 'relative' },
-      // Styles to "inherit" from the input element, allowing
-      // the wrapper to avoid disrupting page styles.
-      inheritStyles: [
-        'display',
-        'verticalAlign',
-        'marginTop',
-        'marginRight',
-        'marginBottom',
-        'marginLeft'
-      ],
-      // Styles for the input element when wrapped.
-      innerElementStyles: {
-        marginTop: 0,
-        marginRight: 0,
-        marginBottom: 0,
-        marginLeft: 0
-      }
-    },
-
-    // Options specific to the 'shown' or 'hidden'
-    // states of the input element.
-    states: {
-      shown: {
-        className: 'hideShowPassword-shown',
-        changeEvent: 'passwordShown',
-        props: { type: 'text' },
-        toggle: {
-          className: 'hideShowPassword-toggle-hide',
-          content: 'Hide',
-          attr: { 'aria-pressed': 'true' }
-        }
-      },
-      hidden: {
-        className: 'hideShowPassword-hidden',
-        changeEvent: 'passwordHidden',
-        props: { type: 'password' },
-        toggle: {
-          className: 'hideShowPassword-toggle-show',
-          content: 'Show',
-          attr: { 'aria-pressed': 'false' }
-        }
-      }
-    }
-
-  };
-
-  function HideShowPassword (element, options) {
-    this.element = $(element);
-    this.wrapperElement = $();
-    this.toggleElement = $();
-    this.init(options);
+  Collapse.DEFAULTS = {
+    toggle: true
   }
 
-  HideShowPassword.prototype = {
+  Collapse.prototype.dimension = function () {
+    var hasWidth = this.$element.hasClass('width')
+    return hasWidth ? 'width' : 'height'
+  }
 
-    init: function (options) {
-      if (this.update(options, defaults)) {
-        this.element.addClass(this.options.className);
-        if (this.options.innerToggle) {
-          this.wrapElement(this.options.wrapper);
-          this.initToggle(this.options.toggle);
-          if (typeof this.options.innerToggle === 'string') {
-            this.toggleElement.hide();
-            this.element.one(this.options.innerToggle, $.proxy(function(){
-              this.toggleElement.show();
-            }, this));
-          }
-        }
-        this.element.trigger(this.options.initEvent, [ this ]);
-      }
-    },
+  Collapse.prototype.show = function () {
+    if (this.transitioning || this.$element.hasClass('in')) return
 
-    update: function (options, base) {
-      this.options = this.prepareOptions(options, base);
-      if (this.updateElement()) {
-        this.element
-          .trigger(this.options.changeEvent, [ this ])
-          .trigger(this.state().changeEvent, [ this ]);
-      }
-      return this.options.enable;
-    },
+    var activesData
+    var actives = this.$parent && this.$parent.children('.panel').children('.in, .collapsing')
 
-    toggle: function (showVal) {
-      showVal = showVal || 'toggle';
-      return this.update({ show: showVal });
-    },
-
-    prepareOptions: function (options, base) {
-      var original = options || {},
-        keyCodes = [],
-        testElement;
-      base = base || this.options;
-      options = $.extend(true, {}, base, options);
-      // Ugly conditional to resolve #34 in a backwards-compatible way (for now)
-      if (original.hasOwnProperty('wrapper') && original.wrapper.hasOwnProperty('inheritStyles')) {
-        options.wrapper.inheritStyles = original.wrapper.inheritStyles;
-      }
-      if (options.enable) {
-        if (options.show === 'toggle') {
-          options.show = this.isType('hidden', options.states);
-        } else if (options.show === 'infer') {
-          options.show = this.isType('shown', options.states);
-        }
-        if (options.toggle.position === 'infer') {
-          options.toggle.position = (this.element.css('text-direction') === 'rtl') ? 'left' : 'right';
-        }
-        if (! $.isArray(options.toggle.attachToKeyCodes)) {
-          if (options.toggle.attachToKeyCodes === true) {
-            testElement = $(options.toggle.element);
-            switch(testElement.prop('tagName').toLowerCase()) {
-              case 'button':
-              case 'input':
-                break;
-              case 'a':
-                if (testElement.filter('[href]').length) {
-                  keyCodes.push(SPACE);
-                  break;
-                }
-              default:
-                keyCodes.push(SPACE, ENTER);
-                break;
-            }
-          }
-          options.toggle.attachToKeyCodes = keyCodes;
-        }
-      }
-      return options;
-    },
-
-    updateElement: function () {
-      if (! this.options.enable || this.isType()) return false;
-      this.element
-        .prop($.extend({}, this.options.props, this.state().props))
-        .addClass(this.state().className)
-        .removeClass(this.otherState().className);
-      this.updateToggle();
-      return true;
-    },
-
-    isType: function (comparison, states) {
-      states = states || this.options.states;
-      comparison = comparison || this.state(undef, undef, states).props.type;
-      if (states[comparison]) {
-        comparison = states[comparison].props.type;
-      }
-      return this.element.prop('type') === comparison;
-    },
-
-    state: function (key, invert, states) {
-      states = states || this.options.states;
-      if (key === undef) {
-        key = this.options.show;
-      }
-      if (typeof key === 'boolean') {
-        key = key ? 'shown' : 'hidden';
-      }
-      if (invert) {
-        key = (key === 'shown') ? 'hidden' : 'shown';
-      }
-      return states[key];
-    },
-
-    otherState: function (key) {
-      return this.state(key, true);
-    },
-
-    wrapElement: function (options) {
-      var enforceWidth = options.enforceWidth,
-        targetWidth;
-      if (! this.wrapperElement.length) {
-        targetWidth = this.element.outerWidth();
-        $.each(options.inheritStyles, $.proxy(function (index, prop) {
-          options.styles[prop] = this.element.css(prop);
-        }, this));
-        this.element.css(options.innerElementStyles).wrap(
-          $(options.element).addClass(options.className).css(options.styles)
-        );
-        this.wrapperElement = this.element.parent();
-        if (enforceWidth === true) {
-          enforceWidth = (this.wrapperElement.outerWidth() === targetWidth) ? false : targetWidth;
-        }
-        if (enforceWidth !== false) {
-          this.wrapperElement.css('width', enforceWidth);
-        }
-      }
-      return this.wrapperElement;
-    },
-
-    initToggle: function (options) {
-      if (! this.toggleElement.length) {
-        // Create element
-        this.toggleElement = $(options.element)
-          .attr(options.attr)
-          .addClass(options.className)
-          .css(options.styles)
-          .appendTo(this.wrapperElement);
-        // Update content/attributes
-        this.updateToggle();
-        // Position
-        this.positionToggle(options.position, options.verticalAlign, options.offset);
-        // Events
-        if (options.touchSupport) {
-          this.toggleElement.css(options.touchStyles);
-          this.element.on(options.attachToTouchEvent, $.proxy(this.toggleTouchEvent, this));
-        } else {
-          this.toggleElement.on(options.attachToEvent, $.proxy(this.toggleEvent, this));
-        }
-        if (options.attachToKeyCodes.length) {
-          this.toggleElement.on(options.attachToKeyEvent, $.proxy(this.toggleKeyEvent, this));
-        }
-      }
-      return this.toggleElement;
-    },
-
-    positionToggle: function (position, verticalAlign, offset) {
-      var styles = {};
-      styles[position] = offset;
-      switch (verticalAlign) {
-        case 'top':
-        case 'bottom':
-          styles[verticalAlign] = offset;
-          break;
-        case 'middle':
-          styles.top = '50%';
-          styles.marginTop = this.toggleElement.outerHeight() / -2;
-          break;
-      }
-      return this.toggleElement.css(styles);
-    },
-
-    updateToggle: function (state, otherState) {
-      var paddingProp,
-        targetPadding;
-      if (this.toggleElement.length) {
-        paddingProp = 'padding-' + this.options.toggle.position;
-        state = state || this.state().toggle;
-        otherState = otherState || this.otherState().toggle;
-        this.toggleElement
-          .attr(state.attr)
-          .addClass(state.className)
-          .removeClass(otherState.className)
-          .html(state.content);
-        targetPadding = this.toggleElement.outerWidth() + (this.options.toggle.offset * 2);
-        if (this.element.css(paddingProp) !== targetPadding) {
-          this.element.css(paddingProp, targetPadding);
-        }
-      }
-      return this.toggleElement;
-    },
-
-    toggleEvent: function (event) {
-      event.preventDefault();
-      this.toggle();
-    },
-
-    toggleKeyEvent: function (event) {
-      $.each(this.options.toggle.attachToKeyCodes, $.proxy(function(index, keyCode) {
-        if (event.which === keyCode) {
-          this.toggleEvent(event);
-          return false;
-        }
-      }, this));
-    },
-
-    toggleTouchEvent: function (event) {
-      var toggleX = this.toggleElement.offset().left,
-        eventX,
-        lesser,
-        greater;
-      if (toggleX) {
-        eventX = event.pageX || event.originalEvent.pageX;
-        if (this.options.toggle.position === 'left') {
-          toggleX+= this.toggleElement.outerWidth();
-          lesser = eventX;
-          greater = toggleX;
-        } else {
-          lesser = toggleX;
-          greater = eventX;
-        }
-        if (greater >= lesser) {
-          this.toggleEvent(event);
-        }
-      }
+    if (actives && actives.length) {
+      activesData = actives.data('bs.collapse')
+      if (activesData && activesData.transitioning) return
     }
 
-  };
+    var startEvent = $.Event('show.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
 
-  $.fn.hideShowPassword = function () {
-    var options = {};
-    $.each(arguments, function (index, value) {
-      var newOptions = {};
-      if (typeof value === 'object') {
-        newOptions = value;
-      } else if (shorthandArgs[index]) {
-        newOptions[shorthandArgs[index]] = value;
-      } else {
-        return false;
+    if (actives && actives.length) {
+      Plugin.call(actives, 'hide')
+      activesData || actives.data('bs.collapse', null)
+    }
+
+    var dimension = this.dimension()
+
+    this.$element
+      .removeClass('collapse')
+      .addClass('collapsing')[dimension](0)
+      .attr('aria-expanded', true)
+
+    this.$trigger
+      .removeClass('collapsed')
+      .attr('aria-expanded', true)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse in')[dimension]('')
+      this.transitioning = 0
+      this.$element
+        .trigger('shown.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    var scrollSize = $.camelCase(['scroll', dimension].join('-'))
+
+    this.$element
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)[dimension](this.$element[0][scrollSize])
+  }
+
+  Collapse.prototype.hide = function () {
+    if (this.transitioning || !this.$element.hasClass('in')) return
+
+    var startEvent = $.Event('hide.bs.collapse')
+    this.$element.trigger(startEvent)
+    if (startEvent.isDefaultPrevented()) return
+
+    var dimension = this.dimension()
+
+    this.$element[dimension](this.$element[dimension]())[0].offsetHeight
+
+    this.$element
+      .addClass('collapsing')
+      .removeClass('collapse in')
+      .attr('aria-expanded', false)
+
+    this.$trigger
+      .addClass('collapsed')
+      .attr('aria-expanded', false)
+
+    this.transitioning = 1
+
+    var complete = function () {
+      this.transitioning = 0
+      this.$element
+        .removeClass('collapsing')
+        .addClass('collapse')
+        .trigger('hidden.bs.collapse')
+    }
+
+    if (!$.support.transition) return complete.call(this)
+
+    this.$element
+      [dimension](0)
+      .one('bsTransitionEnd', $.proxy(complete, this))
+      .emulateTransitionEnd(Collapse.TRANSITION_DURATION)
+  }
+
+  Collapse.prototype.toggle = function () {
+    this[this.$element.hasClass('in') ? 'hide' : 'show']()
+  }
+
+  Collapse.prototype.getParent = function () {
+    return $(this.options.parent)
+      .find('[data-toggle="collapse"][data-parent="' + this.options.parent + '"]')
+      .each($.proxy(function (i, element) {
+        var $element = $(element)
+        this.addAriaAndCollapsedClass(getTargetFromTrigger($element), $element)
+      }, this))
+      .end()
+  }
+
+  Collapse.prototype.addAriaAndCollapsedClass = function ($element, $trigger) {
+    var isOpen = $element.hasClass('in')
+
+    $element.attr('aria-expanded', isOpen)
+    $trigger
+      .toggleClass('collapsed', !isOpen)
+      .attr('aria-expanded', isOpen)
+  }
+
+  function getTargetFromTrigger($trigger) {
+    var href
+    var target = $trigger.attr('data-target')
+      || (href = $trigger.attr('href')) && href.replace(/.*(?=#[^\s]+$)/, '') // strip for ie7
+
+    return $(target)
+  }
+
+
+  // COLLAPSE PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this   = $(this)
+      var data    = $this.data('bs.collapse')
+      var options = $.extend({}, Collapse.DEFAULTS, $this.data(), typeof option == 'object' && option)
+
+      if (!data && options.toggle && /show|hide/.test(option)) options.toggle = false
+      if (!data) $this.data('bs.collapse', (data = new Collapse(this, options)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.collapse
+
+  $.fn.collapse             = Plugin
+  $.fn.collapse.Constructor = Collapse
+
+
+  // COLLAPSE NO CONFLICT
+  // ====================
+
+  $.fn.collapse.noConflict = function () {
+    $.fn.collapse = old
+    return this
+  }
+
+
+  // COLLAPSE DATA-API
+  // =================
+
+  $(document).on('click.bs.collapse.data-api', '[data-toggle="collapse"]', function (e) {
+    var $this   = $(this)
+
+    if (!$this.attr('data-target')) e.preventDefault()
+
+    var $target = getTargetFromTrigger($this)
+    var data    = $target.data('bs.collapse')
+    var option  = data ? 'toggle' : $this.data()
+
+    Plugin.call($target, option)
+  })
+
+}(jQuery);
+
+/* ========================================================================
+ * Bootstrap: dropdown.js v3.3.6
+ * http://getbootstrap.com/javascript/#dropdowns
+ * ========================================================================
+ * Copyright 2011-2016 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
++function ($) {
+  'use strict';
+
+  // DROPDOWN CLASS DEFINITION
+  // =========================
+
+  var backdrop = '.dropdown-backdrop'
+  var toggle   = '[data-toggle="dropdown"]'
+  var Dropdown = function (element) {
+    $(element).on('click.bs.dropdown', this.toggle)
+  }
+
+  Dropdown.VERSION = '3.3.6'
+
+  function getParent($this) {
+    var selector = $this.attr('data-target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && /#[A-Za-z]/.test(selector) && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    var $parent = selector && $(selector)
+
+    return $parent && $parent.length ? $parent : $this.parent()
+  }
+
+  function clearMenus(e) {
+    if (e && e.which === 3) return
+    $(backdrop).remove()
+    $(toggle).each(function () {
+      var $this         = $(this)
+      var $parent       = getParent($this)
+      var relatedTarget = { relatedTarget: this }
+
+      if (!$parent.hasClass('open')) return
+
+      if (e && e.type == 'click' && /input|textarea/i.test(e.target.tagName) && $.contains($parent[0], e.target)) return
+
+      $parent.trigger(e = $.Event('hide.bs.dropdown', relatedTarget))
+
+      if (e.isDefaultPrevented()) return
+
+      $this.attr('aria-expanded', 'false')
+      $parent.removeClass('open').trigger($.Event('hidden.bs.dropdown', relatedTarget))
+    })
+  }
+
+  Dropdown.prototype.toggle = function (e) {
+    var $this = $(this)
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    clearMenus()
+
+    if (!isActive) {
+      if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
+        // if mobile we use a backdrop because click events don't delegate
+        $(document.createElement('div'))
+          .addClass('dropdown-backdrop')
+          .insertAfter($(this))
+          .on('click', clearMenus)
       }
-      $.extend(true, options, newOptions);
-    });
-    return this.each(function(){
-      var $this = $(this),
-        data = $this.data(dataKey);
-      if (data) {
-        data.update(options);
-      } else {
-        $this.data(dataKey, new HideShowPassword(this, options));
-      }
-    });
-  };
 
-  $.each({ 'show':true, 'hide':false, 'toggle':'toggle' }, function (verb, showVal) {
-    $.fn[verb + 'Password'] = function (innerToggle, options) {
-      return this.hideShowPassword(showVal, innerToggle, options);
-    };
-  });
+      var relatedTarget = { relatedTarget: this }
+      $parent.trigger(e = $.Event('show.bs.dropdown', relatedTarget))
 
-}));
+      if (e.isDefaultPrevented()) return
+
+      $this
+        .trigger('focus')
+        .attr('aria-expanded', 'true')
+
+      $parent
+        .toggleClass('open')
+        .trigger($.Event('shown.bs.dropdown', relatedTarget))
+    }
+
+    return false
+  }
+
+  Dropdown.prototype.keydown = function (e) {
+    if (!/(38|40|27|32)/.test(e.which) || /input|textarea/i.test(e.target.tagName)) return
+
+    var $this = $(this)
+
+    e.preventDefault()
+    e.stopPropagation()
+
+    if ($this.is('.disabled, :disabled')) return
+
+    var $parent  = getParent($this)
+    var isActive = $parent.hasClass('open')
+
+    if (!isActive && e.which != 27 || isActive && e.which == 27) {
+      if (e.which == 27) $parent.find(toggle).trigger('focus')
+      return $this.trigger('click')
+    }
+
+    var desc = ' li:not(.disabled):visible a'
+    var $items = $parent.find('.dropdown-menu' + desc)
+
+    if (!$items.length) return
+
+    var index = $items.index(e.target)
+
+    if (e.which == 38 && index > 0)                 index--         // up
+    if (e.which == 40 && index < $items.length - 1) index++         // down
+    if (!~index)                                    index = 0
+
+    $items.eq(index).trigger('focus')
+  }
+
+
+  // DROPDOWN PLUGIN DEFINITION
+  // ==========================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.dropdown')
+
+      if (!data) $this.data('bs.dropdown', (data = new Dropdown(this)))
+      if (typeof option == 'string') data[option].call($this)
+    })
+  }
+
+  var old = $.fn.dropdown
+
+  $.fn.dropdown             = Plugin
+  $.fn.dropdown.Constructor = Dropdown
+
+
+  // DROPDOWN NO CONFLICT
+  // ====================
+
+  $.fn.dropdown.noConflict = function () {
+    $.fn.dropdown = old
+    return this
+  }
+
+
+  // APPLY TO STANDARD DROPDOWN ELEMENTS
+  // ===================================
+
+  $(document)
+    .on('click.bs.dropdown.data-api', clearMenus)
+    .on('click.bs.dropdown.data-api', '.dropdown form', function (e) { e.stopPropagation() })
+    .on('click.bs.dropdown.data-api', toggle, Dropdown.prototype.toggle)
+    .on('keydown.bs.dropdown.data-api', toggle, Dropdown.prototype.keydown)
+    .on('keydown.bs.dropdown.data-api', '.dropdown-menu', Dropdown.prototype.keydown)
+
+}(jQuery);
 
 (function(window, factory) {
 	var lazySizes = factory(window, window.document);
@@ -473,6 +398,8 @@
 
 	var _addEventListener = 'addEventListener';
 
+	var _getAttribute = 'getAttribute';
+
 	var addEventListener = window[_addEventListener];
 
 	var setTimeout = window.setTimeout;
@@ -491,19 +418,19 @@
 		if(!regClassCache[cls]){
 			regClassCache[cls] = new RegExp('(\\s|^)'+cls+'(\\s|$)');
 		}
-		return regClassCache[cls].test(ele.className) && regClassCache[cls];
+		return regClassCache[cls].test(ele[_getAttribute]('class') || '') && regClassCache[cls];
 	};
 
 	var addClass = function(ele, cls) {
 		if (!hasClass(ele, cls)){
-			ele.className = ele.className.trim() + ' ' + cls;
+			ele.setAttribute('class', (ele[_getAttribute]('class') || '').trim() + ' ' + cls);
 		}
 	};
 
 	var removeClass = function(ele, cls) {
 		var reg;
 		if ((reg = hasClass(ele,cls))) {
-			ele.className = ele.className.replace(reg, ' ');
+			ele.setAttribute('class', (ele[_getAttribute]('class') || '').replace(reg, ' '));
 		}
 	};
 
@@ -652,6 +579,7 @@
 
 		var isLoading = 0;
 		var lowRuns = 0;
+		var isStarted = 0;
 
 		var resetPreloading = function(e){
 			isLoading--;
@@ -667,14 +595,14 @@
 		var isNestedVisible = function(elem, elemExpand){
 			var outerRect;
 			var parent = elem;
-			var visible = getCSS(elem, 'visibility') != 'hidden';
+			var visible = getCSS(document.body, 'visibility') == 'hidden' || getCSS(elem, 'visibility') != 'hidden';
 
 			eLtop -= elemExpand;
 			eLbottom += elemExpand;
 			eLleft -= elemExpand;
 			eLright += elemExpand;
 
-			while(visible && (parent = parent.offsetParent)){
+			while(visible && (parent = parent.offsetParent) && parent != document.body && parent != docElem){
 				visible = ((getCSS(parent, 'opacity') || 1) > 0);
 
 				if(visible && getCSS(parent, 'overflow') != 'visible'){
@@ -699,6 +627,15 @@
 
 				lowRuns++;
 
+				if(preloadExpand == null){
+					if(!('expand' in lazySizesConfig)){
+						lazySizesConfig.expand = docElem.clientHeight > 600 ? docElem.clientWidth > 860 ? 500 : 410 : 359;
+					}
+
+					defaultExpand = lazySizesConfig.expand;
+					preloadExpand = defaultExpand * lazySizesConfig.expFactor;
+				}
+
 				if(currentExpand < preloadExpand && isLoading < 1 && lowRuns > 3 && loadMode > 2){
 					currentExpand = preloadExpand;
 					lowRuns = 0;
@@ -714,7 +651,7 @@
 
 					if(!supportScroll){unveilElement(lazyloadElems[i]);continue;}
 
-					if(!(elemExpandVal = lazyloadElems[i].getAttribute('data-expand')) || !(elemExpand = elemExpandVal * 1)){
+					if(!(elemExpandVal = lazyloadElems[i][_getAttribute]('data-expand')) || !(elemExpand = elemExpandVal * 1)){
 						elemExpand = currentExpand;
 					}
 
@@ -739,7 +676,7 @@
 					} else if(!loadedSomething && isCompleted && !autoLoadElem &&
 						isLoading < 4 && lowRuns < 4 && loadMode > 2 &&
 						(preloadElems[0] || lazySizesConfig.preloadAfterLoad) &&
-						(preloadElems[0] || (!elemExpandVal && ((eLbottom || eLright || eLleft || eLtop) || lazyloadElems[i].getAttribute(lazySizesConfig.sizesAttr) != 'auto')))){
+						(preloadElems[0] || (!elemExpandVal && ((eLbottom || eLright || eLleft || eLtop) || lazyloadElems[i][_getAttribute](lazySizesConfig.sizesAttr) != 'auto')))){
 						autoLoadElem = preloadElems[0] || lazyloadElems[i];
 					}
 				}
@@ -755,7 +692,13 @@
 		var switchLoadingClass = function(e){
 			addClass(e.target, lazySizesConfig.loadedClass);
 			removeClass(e.target, lazySizesConfig.loadingClass);
-			addRemoveLoadEvents(e.target, switchLoadingClass);
+			addRemoveLoadEvents(e.target, rafSwitchLoadingClass);
+		};
+		var rafSwitchLoadingClass = function(e){
+			e = {target: e.target};
+			rAF(function(){
+				switchLoadingClass(e);
+			});
 		};
 
 		var changeIframeSrc = function(elem, src){
@@ -769,9 +712,9 @@
 		var handleSources = function(source){
 			var customMedia, parent;
 
-			var sourceSrcset = source.getAttribute(lazySizesConfig.srcsetAttr);
+			var sourceSrcset = source[_getAttribute](lazySizesConfig.srcsetAttr);
 
-			if( (customMedia = lazySizesConfig.customMedia[source.getAttribute('data-media') || source.getAttribute('media')]) ){
+			if( (customMedia = lazySizesConfig.customMedia[source[_getAttribute]('data-media') || source[_getAttribute]('media')]) ){
 				source.setAttribute('media', customMedia);
 			}
 
@@ -779,6 +722,7 @@
 				source.setAttribute('srcset', sourceSrcset);
 			}
 
+			//https://bugzilla.mozilla.org/show_bug.cgi?id=1170572
 			if(customMedia){
 				parent = source.parentNode;
 				parent.insertBefore(source.cloneNode(), source);
@@ -795,12 +739,17 @@
 				}
 				isRunning = false;
 			};
-			return function(fn){
+			var add = function(fn){
 				batch.push(fn);
 				if(!isRunning){
 					isRunning = true;
 					rAF(runBatch);
 				}
+			};
+
+			return {
+				add: add,
+				run: runBatch
 			};
 		})();
 
@@ -810,7 +759,7 @@
 			var isImg = regImg.test(elem.nodeName);
 
 			//allow using sizes="auto", but don't use. it's invalid. Use data-sizes="auto" or a valid value for sizes instead (i.e.: sizes="80vw")
-			var sizes = isImg && (elem.getAttribute(lazySizesConfig.sizesAttr) || elem.getAttribute('sizes'));
+			var sizes = isImg && (elem[_getAttribute](lazySizesConfig.sizesAttr) || elem[_getAttribute]('sizes'));
 			var isAuto = sizes == 'auto';
 
 			if( (isAuto || !isCompleted) && isImg && (elem.src || elem.srcset) && !elem.complete && !hasClass(elem, lazySizesConfig.errorClass)){return;}
@@ -822,26 +771,26 @@
 			elem._lazyRace = true;
 			isLoading++;
 
-			rafBatch(function lazyUnveil(){
-				if(elem._lazyRace){
-					delete elem._lazyRace;
-				}
+			if(lazySizesConfig.rC){
+				width = lazySizesConfig.rC(elem, width) || width;
+			}
 
-				removeClass(elem, lazySizesConfig.lazyClass);
+			rafBatch.add(function lazyUnveil(){
+				isStarted++;
 
 				if(!(event = triggerEvent(elem, 'lazybeforeunveil')).defaultPrevented){
 
 					if(sizes){
 						if(isAuto){
-							addClass(elem, lazySizesConfig.autosizesClass);
 							autoSizer.updateElem(elem, true, width);
+							addClass(elem, lazySizesConfig.autosizesClass);
 						} else {
 							elem.setAttribute('sizes', sizes);
 						}
 					}
 
-					srcset = elem.getAttribute(lazySizesConfig.srcsetAttr);
-					src = elem.getAttribute(lazySizesConfig.srcAttr);
+					srcset = elem[_getAttribute](lazySizesConfig.srcsetAttr);
+					src = elem[_getAttribute](lazySizesConfig.srcAttr);
 
 					if(isImg) {
 						parent = elem.parentNode;
@@ -858,7 +807,7 @@
 						resetPreloadingTimer = setTimeout(resetPreloading, 2500);
 
 						addClass(elem, lazySizesConfig.loadingClass);
-						addRemoveLoadEvents(elem, switchLoadingClass, true);
+						addRemoveLoadEvents(elem, rafSwitchLoadingClass, true);
 					}
 
 					if(isPicture){
@@ -880,14 +829,21 @@
 					}
 				}
 
-				if( !firesLoad || elem.complete ){
-					if(firesLoad){
-						resetPreloading(event);
-					} else {
-						isLoading--;
+				rAF(function(){
+					if(elem._lazyRace){
+						delete elem._lazyRace;
 					}
-					switchLoadingClass(event);
-				}
+					removeClass(elem, lazySizesConfig.lazyClass);
+
+					if( !firesLoad || elem.complete ){
+						if(firesLoad){
+							resetPreloading(event);
+						} else {
+							isLoading--;
+						}
+						switchLoadingClass(event);
+					}
+				});
 			});
 		};
 
@@ -907,8 +863,13 @@
 
 			lazySizesConfig.loadMode = 3;
 
-			if(!isLoading){
+			if(isStarted){
 				throttledCheckElements();
+			} else {
+				setTimeout(function(){
+					checkElements();
+					rafBatch.run();
+				});
 			}
 
 			addEventListener('scroll', function(){
@@ -962,9 +923,6 @@
 				lazyloadElems = document.getElementsByClassName(lazySizesConfig.lazyClass);
 				preloadElems = document.getElementsByClassName(lazySizesConfig.lazyClass + ' ' + lazySizesConfig.preloadClass);
 				hFac = lazySizesConfig.hFac;
-
-				defaultExpand = lazySizesConfig.expand;
-				preloadExpand = defaultExpand * lazySizesConfig.expFactor;
 
 				addEventListener('scroll', throttledCheckElements, true);
 
@@ -1087,7 +1045,6 @@
 			init: true,
 			expFactor: 1.7,
 			hFac: 0.8,
-			expand: docElem.clientHeight > 600 ? docElem.clientWidth > 860 ? 500 : 410 : 359,
 			loadMode: 2
 		};
 
