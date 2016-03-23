@@ -4,6 +4,8 @@ from fabric.api import cd
 from fabric.api import env
 from fabric.api import run
 
+from fabric.contrib import project as fab_project
+
 from ade25.fabfiles import project
 
 from slacker import Slacker
@@ -78,6 +80,23 @@ def rebuild(actor=None):
 def get_data():
     """ Copy live database for local development """
     project.db.download()
+
+
+@task
+def get_backup(path=None):
+    """ Database backup download """
+    fab_project.rsync_project(
+        remote_dir='/opt/backups/${plone-site:site-id}/zipbackups/*',
+        local_dir="${backup:ziplocation}",
+        upload=False,
+        exclude=['*.tmp', '*.old', '*.lock']
+    )
+    fab_project.rsync_project(
+        remote_dir='/opt/backups/${plone-site:site-id}/backups/blobzip/*',
+        local_dir="${backup:blobziplocation}",
+        upload=False,
+        exclude=['*.layout']
+    )
 
 
 @task
